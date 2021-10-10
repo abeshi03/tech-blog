@@ -1,0 +1,137 @@
+@mixin EqualLeftAndRightMargin($value) {
+
+  margin-right: $value;
+  margin-left: $value;
+}
+
+
+@mixin EqualWidthAndHeight($value) {
+
+  width: $value;
+  height: $value;
+}
+
+
+@mixin EqualTopAndBottomPaddings($value) {
+
+  padding-bottom: $value;
+  padding-top: $value;
+}
+
+
+@mixin EqualLeftAndRightPaddings($value) {
+
+  padding-left: $value;
+  padding-right: $value;
+}
+
+
+@mixin FontSizeAndSpacing($size, $spacing) {
+
+  font-size: $size;
+  letter-spacing: $spacing;
+}
+
+
+@mixin PositionCenterMaxWidth($value) {
+
+  max-width: $value;
+  margin: 0 auto;
+}
+
+
+@mixin CenteredContentWithComputedSidePaddings($value) {
+
+  padding-left: calc(0.5 * (100% - #{$value}));
+  padding-right: calc(0.5 * (100% - #{$value}));
+}
+
+
+@mixin fillViewportWidthIgnoringParentPaddings() {
+
+  width: 100vw;
+  margin-left: calc(-0.5 * (100vh - 100%));
+}
+
+
+// - max-widthを指定した1行のtextOverFlow対応
+@mixin textOverflowSpecifyWidth($max-width) {
+
+  max-width: $max-width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+// - 複数行のtextOverFlow対応
+@mixin textOverflowSpecifyTheNumberOfLines($numberOfLines) {
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $numberOfLines;
+  overflow: hidden;
+}
+
+
+//　- ローディングのスタイル
+@mixin LoadingPlaceholder(
+
+  $width: null,
+  $height: null,
+  $borderRadius: null,
+  $underlayColor: #e1e7eb,
+  $wavePrimaryColor: lighten(#e1e7eb, 30%),
+  $waveSecondaryColor: lighten(#e1e7eb, 20%),
+  $useAbsolutePositioning: false
+) {
+  @keyframes LoadingPlaceholderAnimation {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  width: $width;
+  height: $height;
+  border-radius: $borderRadius;
+
+  background: $underlayColor;
+  overflow: hidden;
+
+  @if $useAbsolutePositioning {
+    position: relative;
+  }
+
+  &:before {
+    display: block;
+    content: "";
+
+    height: 100%;
+
+    background: linear-gradient(
+                    to right,
+                    transparent 0%,
+                    $waveSecondaryColor 30%,
+                    $wavePrimaryColor 50%,
+                    $waveSecondaryColor 70%,
+                    transparent 100%
+    );
+
+    transform: translateX(-100%);
+
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: LoadingPlaceholderAnimation;
+    animation-timing-function: ease;
+
+    @if $useAbsolutePositioning {
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+}
