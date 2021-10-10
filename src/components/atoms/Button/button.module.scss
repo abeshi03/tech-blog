@@ -1,6 +1,7 @@
 @import "src/assets/styles/global/mixins/mixins";
 @import "src/assets/styles/global/valiables/valiables";
 
+// - ボタン色 ============================================================================================================
 .button__skyBlue {
 
   background: $MAIN_COLOR_SKY_BLUE;
@@ -70,6 +71,20 @@
   }
 }
 
+// - 大きさ =============================================================================================================
+.big {
+
+  width: 168px;
+  height: 50px;
+}
+
+.small {
+
+  width: 109px;
+  height: 45px;
+}
+
+
 .button {
 
   border-radius: 5px;
@@ -78,25 +93,4 @@
   font-weight: bold;
 
   cursor: pointer;
-}
-
-
-.big {
-
-  width: 168px;
-  height: 50px;
-
-  //border-radius: 5px;
-  //
-  //font-size: 14px;
-  //font-weight: bold;
-  //
-  //cursor: pointer;
-}
-
-.small {
-
-  width: 109px;
-  height: 45px;
-
 }
