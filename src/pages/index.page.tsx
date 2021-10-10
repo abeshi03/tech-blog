@@ -8,6 +8,7 @@ import Routing from "../routing/routing";
 // - 子コンポーネント =====================================================================================================
 import { Breadcrumb, BreadcrumbLink } from "../components/atoms/Breadcrumb/Breadcrumb";
 import { Button } from "../components/atoms/Button/Button";
+import {TwitterIcon} from "../assets/icons/TwitterIcon";
 
 // 表示テスト後ほど削除 ====================================================================================================
 const links: BreadcrumbLink[] = [
@@ -35,6 +36,7 @@ const Home: VFC = () => {
       {/*表示テスト後ほどページから削除*/}
       <Button color={"SKY_BLUE"} path={"/"} size={"BIG"}>テストボタン</Button>
       <Button color={"WHITE"} path={"/"} size={"SMALL"}>テストボタン</Button>
+      <TwitterIcon/>
     </>
   );
 };
