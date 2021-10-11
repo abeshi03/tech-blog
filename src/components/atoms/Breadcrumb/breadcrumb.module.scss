@@ -1,0 +1,48 @@
+@import "src/assets/styles/global/mixins/mixins";
+@import "src/assets/styles/global/valiables/valiables";
+
+
+.breadcrumb {
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+
+  .label {
+
+    color: #7E6B6B;
+    text-decoration: none;
+
+    font-size: 12px;
+
+
+    &:hover {
+
+      text-decoration: underline;
+    }
+
+
+    &:focus,
+    &:active {
+
+      opacity: 0.6;
+    }
+  }
+
+
+  .guide {
+
+    @include EqualLeftAndRightPaddings(10px);
+
+    color: #7E6B6B;
+  }
+
+
+  .label__noLink {
+
+    color: #222222;
+
+    font-size: 12px;
+  }
+}

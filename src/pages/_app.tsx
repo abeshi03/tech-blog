@@ -2,8 +2,8 @@
 import { AppProps } from "next/app";
 
 // - アセット ===========================================================================================================
-import "../assets/styles/reset.scss";
-import "../assets/styles/global.scss";
+import "../assets/styles/global/reset.scss";
+import "../assets/styles/global/global.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
 
