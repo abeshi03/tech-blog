@@ -12,9 +12,8 @@ export type BreadcrumbLink = {
 }
 
 /* eslint-disable-next-line react/display-name */
-export const Breadcrumb: VFC<Array<BreadcrumbLink[]>> = memo((props) => {
+export const Breadcrumb: VFC<{ links: BreadcrumbLink[] }> = memo((props) => {
 
-  // @ts-ignore
   const { links } = props;
 
   if (links.length === 0) return null;

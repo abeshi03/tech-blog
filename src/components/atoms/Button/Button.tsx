@@ -1,8 +1,10 @@
 // - フレームワーク =======================================================================================================
 import React, { memo, VFC, ReactNode } from "react";
 import Link from "next/link";
+
 // - アセット ============================================================================================================
 import styles from "./button.module.scss";
+
 // - ルーティング =========================================================================================================
 
 type Props = {
@@ -16,25 +18,23 @@ type Props = {
 export const Button: VFC<Props> = memo((props) => {
   const { color, path, children, size } = props;
 
-  const ButtonColorModifierCSS_Class = (): string | null => {
+  const ButtonColorModifierCSS_Class = (): string => {
     switch (color) {
       case "SKY_BLUE": return styles.button__skyBlue;
       case "WHITE": return styles.button__white;
-      default: return null;
     }
   };
 
-  const ButtonSizeModifierCSS_Class = (): string | null => {
+  const ButtonSizeModifierCSS_Class = (): string => {
     switch (size) {
       case "SMALL": return styles.small;
       case "BIG": return styles.big;
-      default: return null;
     }
   };
 
 
   return (
-    <React.Fragment>
+    <>
       <Link href={path}>
         <a className={styles.path}>
           <button className={`${ButtonColorModifierCSS_Class()} ${ButtonSizeModifierCSS_Class()} ${styles.button}`}>
@@ -42,6 +42,6 @@ export const Button: VFC<Props> = memo((props) => {
           </button>
         </a>
       </Link>
-    </React.Fragment>
+    </>
   );
 });

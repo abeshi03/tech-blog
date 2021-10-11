@@ -1,9 +1,7 @@
-namespace Routing {
+export const Routing =  {
   // - トップ ===========================================================================================================
-  export namespace Top {
-    export const URI_Path: string = "/";
-    export const pageName: string = "トップ";
+   Top: {
+     path: "/",
+     pageName: "トップ"
   }
-}
-
-export default Routing;
+};

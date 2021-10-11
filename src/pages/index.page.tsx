@@ -3,7 +3,7 @@ import React, { VFC } from "react";
 import Head from "next/head";
 
 // - ルーティング ========================================================================================================
-import Routing from "../routing/routing";
+import { Routing } from "../routing/routing";
 
 // - 子コンポーネント =====================================================================================================
 import { Breadcrumb, BreadcrumbLink } from "../components/atoms/Breadcrumb/Breadcrumb";
@@ -13,7 +13,7 @@ import { Button } from "../components/atoms/Button/Button";
 const links: BreadcrumbLink[] = [
   {
     label: "ホーム",
-    path: Routing.Top.URI_Path
+    path: Routing.Top.path
   },
   {
     label: "記事一覧"
@@ -28,8 +28,6 @@ const Home: VFC = () => {
         <title>{Routing.Top.pageName}</title>
       </Head>
       <Breadcrumb
-        // 表示テスト後ほどページから削除
-        // @ts-ignore
         links={links}
       />
       {/*表示テスト後ほどページから削除*/}
