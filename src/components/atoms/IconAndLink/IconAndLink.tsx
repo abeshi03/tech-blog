@@ -25,12 +25,12 @@ export const IconAndLink: VFC<Props> = memo((props) => {
   const { iconType, label, externalLink, style } = props;
 
   return (
-    <a className={styles.iconAndLink} href={externalLink} target="_blank" style={style && style}>
+    <a href={externalLink} target="_blank" className={styles.iconAndLink} style={style && style}>
 
       <div className={styles.icon}>{ selectedIcon(iconType) }</div>
 
       <div className={styles.flexContainer}>
-        <a className={styles.label}>{ label }</a>
+        <div className={styles.label}>{ label }</div>
       </div>
 
     </a>
