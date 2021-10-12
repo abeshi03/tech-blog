@@ -11,6 +11,7 @@ import Routing from "../routing/routing";
 import { Breadcrumb, BreadcrumbLink } from "../components/atoms/Breadcrumb/Breadcrumb";
 import { Button } from "../components/atoms/Button/Button";
 import { IconAndLink } from "../components/atoms/IconAndLink/IconAndLink";
+import { ProfileCard } from "../components/organisms/Cards/ProfileCard";
 
 // 表示テスト後ほど削除 ====================================================================================================
 const links: BreadcrumbLink[] = [
@@ -39,6 +40,7 @@ const Home: VFC = () => {
       <Button color={"SKY_BLUE"} path={"/"} size={"BIG"}>テストボタン</Button>
       <Button color={"WHITE"} path={"/"} size={"SMALL"}>テストボタン</Button>
       <IconAndLink iconType="GITHUB" label="github_id" externalLink={ExternalLinks.Github}/>
+      <ProfileCard/>
     </>
   );
 };
