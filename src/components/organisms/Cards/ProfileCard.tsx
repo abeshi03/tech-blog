@@ -1,0 +1,57 @@
+// - フレームワーク =======================================================================================================
+import React, { memo, VFC } from "react";
+
+// - アセット ===========================================================================================================
+import styles from "./profileCard.module.scss";
+
+// - 型定義 =============================================================================================================
+import { Profile } from "../../../types/profile/profile";
+
+// - 子コンポーネント =====================================================================================================
+import { IconAndLink } from "../../atoms/IconAndLink/IconAndLink";
+import { ExternalLinks } from "../../../businessRules/application/externalLinks";
+import { Button } from "../../atoms/Button/Button";
+
+// type Props = {
+//   style?: React.CSSProperties;
+// } & Profile;
+
+const getFullName = (familyName: string, lastName: string): string => {
+  return `${familyName} ${lastName}`
+}
+
+/* eslint-disable-next-line react/display-name */
+export const ProfileCard: VFC = memo((props) => {
+
+  // const { style, familyName, lastName, imageURI, role } = props;
+
+  return (
+    // <div className={styles.profileCard} style={style && style}>
+    <div className={styles.profileCard}>
+
+      {/*<div className={styles.image} style={{backgroundImage: `url(${imageURI})`}} role="img"></div>*/}
+      <div className={styles.image} role="img"></div>
+
+      <div className={styles.fullName}>阿部航平</div>
+      {/*<div className={styles.fullName}>{getFullName(familyName, lastName)}</div>*/}
+
+      {/*<div className={styles.role}>{role}</div>*/}
+      <div className={styles.role}>フロントエンドエンジニア</div>
+
+      <IconAndLink
+        iconType="GITHUB"
+        label={"Github"}
+        style={{marginTop: "10px"}}
+        externalLink={ExternalLinks.Github}
+      />
+
+      <Button
+        color="WHITE"
+        size="BIG"
+        path={"#"}
+        style={{marginTop: "16px"}}
+      >Read more</Button>
+
+    </div>
+  );
+});
