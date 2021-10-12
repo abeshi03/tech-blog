@@ -2,6 +2,8 @@
 import React, { VFC } from "react";
 import Head from "next/head";
 
+import { ExternalLinks } from "../businessRules/application/externalLinks";
+
 // - ルーティング ========================================================================================================
 import Routing from "../routing/routing";
 
@@ -36,7 +38,7 @@ const Home: VFC = () => {
       {/*表示テスト後ほどページから削除*/}
       <Button color={"SKY_BLUE"} path={"/"} size={"BIG"}>テストボタン</Button>
       <Button color={"WHITE"} path={"/"} size={"SMALL"}>テストボタン</Button>
-      <IconAndLink iconType={"GITHUB"} label={"github_id"} externalLink={"https://github.com/abeshi03"}/>
+      <IconAndLink iconType="GITHUB" label="github_id" externalLink={ExternalLinks.Github}/>
     </>
   );
 };
