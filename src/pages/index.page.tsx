@@ -1,5 +1,5 @@
 // - フレームワーク =======================================================================================================
-import React, { VFC } from "react";
+import React, {useEffect, VFC} from "react";
 import Head from "next/head";
 
 import { ExternalLinks } from "../businessRules/application/externalLinks";
@@ -25,7 +25,22 @@ const links: BreadcrumbLink[] = [
 ];
 // =====================================================================================================================
 
+
+const test = async (): Promise<void> => {
+  const baseEndPoint = process.env.NEXT_PUBLIC_ENDPOINT;
+  const response = await fetch(`${baseEndPoint}my_profile`, {
+    headers: {
+      "X-API-KEY": process.env.NEXT_PUBLIC_PROFILE_API_KEY
+    }
+  });
+  console.log(response.json())
+}
+
+
 const Home: VFC = () => {
+  useEffect(() => {
+    test();
+  },[])
   return(
     <>
       <Head>
