@@ -42,6 +42,7 @@ export const ProfileCard: VFC<Props> = memo((props) => {
         externalLink={ExternalLinks.Github}
       />
 
+      // TODO ルーティング追加
       <Button
         color="WHITE"
         size="BIG"
