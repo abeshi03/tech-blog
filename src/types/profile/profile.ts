@@ -2,5 +2,7 @@ export type Profile = {
   familyName: string;
   lastName: string;
   role: string;
-  imageURI: string;
+  image: {
+    url: string;
+  }
 }

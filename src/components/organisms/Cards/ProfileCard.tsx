@@ -12,31 +12,28 @@ import { IconAndLink } from "../../atoms/IconAndLink/IconAndLink";
 import { ExternalLinks } from "../../../businessRules/application/externalLinks";
 import { Button } from "../../atoms/Button/Button";
 
-// type Props = {
-//   style?: React.CSSProperties;
-// } & Profile;
-
-const getFullName = (familyName: string, lastName: string): string => {
-  return `${familyName} ${lastName}`
+type Props = {
+  style?: React.CSSProperties;
+  targetProfile: Profile;
 }
 
-/* eslint-disable-next-line react/display-name */
-export const ProfileCard: VFC = memo((props) => {
+const getFullName = (familyName: string, lastName: string): string => {
+  return `${familyName} ${lastName}`;
+};
 
-  // const { style, familyName, lastName, imageURI, role } = props;
+/* eslint-disable-next-line react/display-name */
+export const ProfileCard: VFC<Props> = memo((props) => {
+
+  const { style, targetProfile } = props;
 
   return (
-    // <div className={styles.profileCard} style={style && style}>
-    <div className={styles.profileCard}>
+    <div className={styles.profileCard} style={style && style}>
 
-      {/*<div className={styles.image} style={{backgroundImage: `url(${imageURI})`}} role="img"></div>*/}
-      <div className={styles.image} role="img"></div>
+      <div className={styles.image} style={{backgroundImage: `url(${targetProfile.image.url})`}} role="img"></div>
 
-      <div className={styles.fullName}>阿部航平</div>
-      {/*<div className={styles.fullName}>{getFullName(familyName, lastName)}</div>*/}
+      <div className={styles.fullName}>{getFullName(targetProfile.familyName, targetProfile.lastName)}</div>
 
-      {/*<div className={styles.role}>{role}</div>*/}
-      <div className={styles.role}>フロントエンドエンジニア</div>
+      <div className={styles.role}>{targetProfile.role}</div>
 
       <IconAndLink
         iconType="GITHUB"
