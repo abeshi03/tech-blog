@@ -17,7 +17,7 @@ const selectedIcon = (iconType: string): JSX.Element => {
     case "TWITTER": return <TwitterIcon/>;
     case "GITHUB": return <GithubIcon/>;
   }
-}
+};
 
 /* eslint-disable-next-line react/display-name */
 export const IconAndLink: VFC<Props> = memo((props) => {
@@ -25,7 +25,7 @@ export const IconAndLink: VFC<Props> = memo((props) => {
   const { iconType, label, externalLink, style } = props;
 
   return (
-    <a href={externalLink} target="_blank" className={styles.iconAndLink} style={style && style}>
+    <a href={externalLink} target="_blank" className={styles.iconAndLink} style={style && style} rel="noreferrer">
 
       <div className={styles.icon}>{ selectedIcon(iconType) }</div>
 

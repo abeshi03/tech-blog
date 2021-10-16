@@ -1,8 +1,14 @@
-// - フレームワーク =======================================================================================================
-import React, {useEffect, VFC} from "react";
+// - フレームワーク, ライブラリー ===========================================================================================
+import React, { VFC } from "react";
 import Head from "next/head";
+import { GetStaticProps } from "next";
+import axios from "axios";
 
+// - ビジネスルール =======================================================================================================
 import { ExternalLinks } from "../businessRules/application/externalLinks";
+
+// - 型定義 =============================================================================================================
+import { Profile } from "../types/profile/profile";
 
 // - ルーティング ========================================================================================================
 import Routing from "../routing/routing";
@@ -25,22 +31,11 @@ const links: BreadcrumbLink[] = [
 ];
 // =====================================================================================================================
 
+type Props = Profile
 
-const test = async (): Promise<void> => {
-  const baseEndPoint = process.env.NEXT_PUBLIC_ENDPOINT;
-  const response = await fetch(`${baseEndPoint}my_profile`, {
-    headers: {
-      "X-API-KEY": process.env.NEXT_PUBLIC_PROFILE_API_KEY
-    }
-  });
-  console.log(response.json())
-}
+const Home: VFC = ({ myProfile }: { myProfile: Props }) => {
 
 
-const Home: VFC = () => {
-  useEffect(() => {
-    test();
-  },[])
   return(
     <>
       <Head>
@@ -53,11 +48,38 @@ const Home: VFC = () => {
       />
       {/*表示テスト後ほどページから削除*/}
       <Button color={"SKY_BLUE"} path={"/"} size={"BIG"}>テストボタン</Button>
+      {/*表示テスト後ほどページから削除*/}
       <Button color={"WHITE"} path={"/"} size={"SMALL"}>テストボタン</Button>
+      {/*表示テスト後ほどページから削除*/}
       <IconAndLink iconType="GITHUB" label="github_id" externalLink={ExternalLinks.Github}/>
-      <ProfileCard/>
+      {/*表示テスト後ほどページから削除*/}
+      <ProfileCard
+        targetProfile={myProfile}
+      />
     </>
   );
 };
 
 export default Home;
+
+export const getStaticProps: GetStaticProps = async () => {
+
+  try {
+
+    const baseEndPoint: string = process.env.NEXT_PUBLIC_ENDPOINT;
+
+    const response = await axios.get<Profile>(`${baseEndPoint}my_profile`,{
+      headers: { "X-API-KEY": process.env.NEXT_PUBLIC_PROFILE_API_KEY }
+    }).then(res => res.data);
+
+    return {
+      props: {
+        myProfile: response
+      }
+    };
+
+  } catch (error: unknown) {
+    //TODO 500ページを後ほど作ってレダイレクトするようにする
+    throw new Error("getStaticProps_error: myProfile");
+  }
+};
