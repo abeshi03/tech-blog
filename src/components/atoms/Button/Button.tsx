@@ -12,11 +12,12 @@ type Props = {
   size: "SMALL" | "BIG";
   path: string;
   children: ReactNode;
+  style?: React.CSSProperties;
 }
 
 /* eslint-disable-next-line react/display-name */
 export const Button: VFC<Props> = memo((props) => {
-  const { color, path, children, size } = props;
+  const { color, path, children, size, style } = props;
 
   const ButtonColorModifierCSS_Class = (): string => {
     switch (color) {
@@ -36,7 +37,7 @@ export const Button: VFC<Props> = memo((props) => {
   return (
     <>
       <Link href={path}>
-        <a className={styles.path}>
+        <a className={styles.path} style={style}>
           <button className={`${ButtonColorModifierCSS_Class()} ${ButtonSizeModifierCSS_Class()} ${styles.button}`}>
             { children }
           </button>

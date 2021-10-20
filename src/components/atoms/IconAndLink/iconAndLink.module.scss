@@ -1,0 +1,64 @@
+@import "src/assets/styles/global/mixins/mixins";
+@import "src/assets/styles/global/valiables/valiables";
+
+.iconAndLink {
+
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+
+  .icon {
+
+    @include EqualWidthAndHeight(21px);
+
+    fill: $ACCENT_COLOR_PURPLE;
+  }
+
+
+  &:hover .icon {
+
+    fill: $MAIN_COLOR_SKY_BLUE;
+  }
+
+
+  &:focus .icon {
+
+    text-decoration: underline;
+  }
+
+
+  &:active .icon {
+
+    fill: $MAIN_COLOR_SKY_BLUE;
+  }
+
+
+  .label {
+
+    color: $ACCENT_COLOR_PURPLE;
+  }
+
+
+  &:hover .label {
+
+    color: $MAIN_COLOR_SKY_BLUE;
+  }
+
+
+  &:focus .label {
+
+    text-decoration: underline;
+  }
+
+
+  &:active .label {
+
+    color: $MAIN_COLOR_SKY_BLUE;
+  }
+
+}

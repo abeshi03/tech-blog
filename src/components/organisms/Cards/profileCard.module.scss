@@ -1,0 +1,43 @@
+@import "src/assets/styles/global/mixins/mixins";
+@import "src/assets/styles/global/valiables/valiables";
+
+.profileCard {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include EqualTopAndBottomPaddings(34px);
+
+  background: #FFFFFF;
+  box-shadow: 0 -3px 10px rgba(#123D52, 0.2);
+}
+
+
+.image {
+
+  @include EqualWidthAndHeight(130px);
+  border-radius: 50%;
+
+  background-image: url('https://dummyimage.com/100x100/03488d/fff');
+  background-size: cover;
+  background-position: center;
+}
+
+
+.fullName {
+
+  margin-top: 16px;
+}
+
+
+.role {
+
+  margin-top: 5px;
+}
+
+
+// - propsクラス ========================================================================================================
+.marginTop {
+  margin-top: 10px;
+}

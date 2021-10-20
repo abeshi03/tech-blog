@@ -10,6 +10,7 @@
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
+    "axios": "^0.23.0",
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.2",
     "next": "11.1.2",
