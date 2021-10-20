@@ -31,9 +31,11 @@ const links: BreadcrumbLink[] = [
 ];
 // =====================================================================================================================
 
-type Props = Profile
+type Props = {
+  myProfile: Profile
+}
 
-const Home: VFC = ({ myProfile }: { myProfile: Props }) => {
+const Home: VFC<Props> = ({ myProfile }) => {
 
 
   return(
