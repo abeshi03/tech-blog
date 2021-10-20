@@ -9,7 +9,7 @@ import { Profile } from "../../../types/profile/profile";
 
 // - 子コンポーネント =====================================================================================================
 import { IconAndLink } from "../../atoms/IconAndLink/IconAndLink";
-import { ExternalLinks } from "../../../businessRules/application/externalLinks";
+import { ExternalLinks } from "../../../config/application/externalLinks";
 import { Button } from "../../atoms/Button/Button";
 
 type Props = {

@@ -5,7 +5,7 @@ import { GetStaticProps } from "next";
 import axios from "axios";
 
 // - ビジネスルール =======================================================================================================
-import { ExternalLinks } from "../businessRules/application/externalLinks";
+import { ExternalLinks } from "../config/application/externalLinks";
 
 // - 型定義 =============================================================================================================
 import { Profile } from "../types/profile/profile";
