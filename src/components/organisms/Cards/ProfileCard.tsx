@@ -38,7 +38,7 @@ export const ProfileCard: VFC<Props> = memo((props) => {
       <IconAndLink
         iconType="GITHUB"
         label={"Github"}
-        style={{marginTop: "10px"}}
+        className={styles.marginTop}
         externalLink={ExternalLinks.Github}
       />
 

@@ -81,7 +81,7 @@ export const getStaticProps: GetStaticProps = async () => {
     };
 
   } catch (error: unknown) {
-    //TODO 500ページを後ほど作ってレダイレクトするようにする
+
     throw new Error("getStaticProps_error: myProfile");
   }
 };

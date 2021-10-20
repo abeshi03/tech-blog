@@ -9,7 +9,7 @@ type Props = {
   iconType: "TWITTER" | "GITHUB";
   label: string;
   externalLink: string;
-  style?: React.CSSProperties;
+  className?: string;
 }
 
 const selectedIcon = (iconType: string): JSX.Element => {
@@ -22,10 +22,10 @@ const selectedIcon = (iconType: string): JSX.Element => {
 /* eslint-disable-next-line react/display-name */
 export const IconAndLink: VFC<Props> = memo((props) => {
 
-  const { iconType, label, externalLink, style } = props;
+  const { iconType, label, externalLink, className } = props;
 
   return (
-    <a href={externalLink} target="_blank" className={styles.iconAndLink} style={style && style} rel="noreferrer">
+    <a href={externalLink} target="_blank" className={`${styles.iconAndLink} ${className}`} rel="noreferrer">
 
       <div className={styles.icon}>{ selectedIcon(iconType) }</div>
 
