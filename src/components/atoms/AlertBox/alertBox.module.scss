@@ -1,0 +1,121 @@
+@import "src/assets/styles/global/mixins/mixins";
+@import "src/assets/styles/global/valiables/valiables";
+
+// - アラートボックスの専用動的クラス　======================================================================================
+.alertBox__Error {
+
+  color: #a75a59;
+  fill: #a75a59;
+  background: #feeeed;
+
+  border: 2px solid #a75a59;
+}
+
+
+.alertBox__Info {
+
+  color: #4682a7;
+  fill: #4682a7;
+  background: #dbeefa;
+
+  border: 2px solid #4682a7;
+}
+
+
+.alertBox__Warning {
+
+  color: #cbac65;
+  fill: #cbac65;
+  background: #fefbec;
+
+  border: 2px solid #cbac65;
+}
+
+
+.alertBox__Success {
+
+  color: #3f8e79;
+  fill: #3f8e79;
+  background: #effcf5;
+
+  border: 2px solid #3f8e79;
+}
+
+// - 　ここまで　========================================================================================================
+
+.alertBox {
+
+  $MEDIUM_SCREENS__MINIMAL_WIDTH: 580px;
+
+  @mixin WideAndMediumScreen() {
+    @media screen and (min-width: $MEDIUM_SCREENS__MINIMAL_WIDTH) {
+      @content
+    }
+  }
+
+  @mixin SmallScreen() {
+    @media screen and (max-width: $MEDIUM_SCREENS__MINIMAL_WIDTH - 1) {
+      @content
+    }
+  }
+
+
+  @include WideAndMediumScreen {
+
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    align-items: center;
+  }
+
+
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-radius: 10px;
+
+
+  .leftColumn {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  .rightColumn {
+
+    @include WideAndMediumScreen {
+
+      padding-right: 40px;
+    }
+
+
+    @include SmallScreen {
+
+      @include EqualLeftAndRightPaddings(5%);
+      padding-top: 30px;
+    }
+  }
+
+
+  .alertTitle {
+
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 25px;
+  }
+
+
+  .alertDescription {
+
+    font-size: 16px;
+    line-height: 20px;
+
+    padding-top: 15px;
+  }
+
+
+  .icon {
+
+    @include EqualWidthAndHeight(30px)
+  }
+}
