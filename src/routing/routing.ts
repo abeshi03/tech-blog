@@ -9,6 +9,7 @@ export const Routing =  {
     pageName: "ページが見つかりません"
   },
   InternalServerError: {
+    path: "/500",
     pageName: "ページが表示できません"
   }
 };

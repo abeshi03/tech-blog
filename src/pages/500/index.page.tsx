@@ -1,6 +1,6 @@
 // - フレームワーク, ライブラリー ===========================================================================================
 import { VFC } from "react";
-import { Head } from "next/document";
+import Head from "next/head";
 
 // - ルーティング ========================================================================================================
 import { Routing } from "../../routing/routing";
@@ -33,6 +33,6 @@ const InternalServerError: VFC = () => {
       </div>
     </>
   );
-}
+};
 
 export default InternalServerError;

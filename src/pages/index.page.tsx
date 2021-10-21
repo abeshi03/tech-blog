@@ -63,7 +63,7 @@ const Home: VFC<Props> = ({ myProfile }) => {
       <AlertBox title="成功テスト" description="成功テスト" alertType="SUCCESS" />
     </>
   );
-}
+};
 
 export default Home;
 

@@ -36,6 +36,6 @@ const NotFound: VFC = () => {
       </div>
     </>
   );
-}
+};
 
 export default NotFound;
