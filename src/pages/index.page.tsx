@@ -18,6 +18,7 @@ import { Breadcrumb, BreadcrumbLink } from "../components/atoms/Breadcrumb/Bread
 import { Button } from "../components/atoms/Button/Button";
 import { IconAndLink } from "../components/atoms/IconAndLink/IconAndLink";
 import { ProfileCard } from "../components/organisms/Cards/ProfileCard";
+import { AlertBox } from "../components/atoms/AlertBox/AlertBox";
 
 // 表示テスト後ほど削除 ====================================================================================================
 const links: BreadcrumbLink[] = [
@@ -56,6 +57,10 @@ const Home: VFC<Props> = ({ myProfile }) => {
       <ProfileCard
         targetProfile={myProfile}
       />
+      <AlertBox title="エラーテスト" description="エラーテスト" alertType="ERROR" />
+      <AlertBox title="お知らせテスト" description="お知らせテスト" alertType="INFO" />
+      <AlertBox title="警告テスト" description="警告テスト" alertType="WARNING" />
+      <AlertBox title="成功テスト" description="成功テスト" alertType="SUCCESS" />
     </>
   );
 };

@@ -3,5 +3,13 @@ export const Routing =  {
    Top: {
      path: "/",
      pageName: "トップ"
+  },
+  NotFound: {
+    path: "*",
+    pageName: "ページが見つかりません"
+  },
+  InternalServerError: {
+    path: "/500",
+    pageName: "ページが表示できません"
   }
 };

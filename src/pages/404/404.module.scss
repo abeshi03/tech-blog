@@ -1,0 +1,57 @@
+@import "src/assets/styles/global/mixins/mixins";
+@import "src/assets/styles/global/valiables/valiables";
+
+.notFountPage {
+
+  $MAX_CONTENT_WIDTH: 800px;
+  $LEFT_OR_RIGHT_MINIMAL_EQUAL_PADDINGS__WIDE_SCREENS: 34px;
+
+  $wideScreen: $MAX_CONTENT_WIDTH+2*$LEFT_OR_RIGHT_MINIMAL_EQUAL_PADDINGS__WIDE_SCREENS;
+
+  $MEDIUM_SCREENS__MINIMAL_WIDTH: 580px;
+
+  @mixin WideScreen() {
+   @media screen and (min-width: $wideScreen) {
+     @content
+   }
+  }
+
+  @mixin MediumScreen() {
+   @media screen and (min-width: $MEDIUM_SCREENS__MINIMAL_WIDTH) and (max-width: $wideScreen - 1) {
+     @content
+   }
+  }
+
+  @mixin SmallScreen() {
+   @media screen and (max-width: $MEDIUM_SCREENS__MINIMAL_WIDTH - 1) {
+     @content
+   }
+  }
+
+  @mixin WideAndMediumScreen() {
+   @media screen and (min-width: $MEDIUM_SCREENS__MINIMAL_WIDTH) {
+     @content
+   }
+  }
+
+  @mixin MediumAndSmallScreen() {
+   @media screen and (max-width: $wideScreen - 1) {
+     @content
+   }
+  }
+
+  @include WideScreen() {
+    @include CenteredContentWithComputedSidePaddings($MAX_CONTENT_WIDTH);
+  }
+
+  @include MediumAndSmallScreen() {
+    @include EqualLeftAndRightPaddings(5%);
+  }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 100vh;
+}
