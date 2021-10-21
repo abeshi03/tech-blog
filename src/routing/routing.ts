@@ -7,5 +7,8 @@ export const Routing =  {
   NotFound: {
     path: "*",
     pageName: "ページが見つかりません"
+  },
+  InternalServerError: {
+    pageName: "ページが表示できません"
   }
 };
