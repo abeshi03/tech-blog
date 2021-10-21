@@ -3,5 +3,9 @@ export const Routing =  {
    Top: {
      path: "/",
      pageName: "トップ"
+  },
+  NotFound: {
+    path: "*",
+    pageName: "ページが見つかりません"
   }
 };
