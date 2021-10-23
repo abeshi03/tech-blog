@@ -16,7 +16,8 @@ type Props = {
 /* eslint-disable-next-line react/display-name */
 export const HeadingAndLink: VFC<Props> = memo((props) => {
   const { heading, linkName, path, style } = props;
-  return (
+  
+return (
     <div className={styles.headingAndLink} style={style}>
       <h1 className={"heading2"}>{ heading }</h1>
       <Link href={path}>

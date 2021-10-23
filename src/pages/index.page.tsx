@@ -18,8 +18,9 @@ type Props = {
 }
 
 const Home: VFC<Props> = ({ myProfile }) => {
-  console.log(myProfile)
-  return(
+  console.log(myProfile);
+  
+return(
     <>
       <Head>
         <title>{ Routing.Top.pageName }</title>
@@ -39,5 +40,5 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       myProfile
     }
-  }
+  };
 };

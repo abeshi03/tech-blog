@@ -18,7 +18,7 @@ export const getMyProfile = async (): Promise<Profile> => {
 
     const response = await axios.get<Profile>(`${baseEndPoint}my_profile`,{
       headers: { "X-API-KEY": process.env.NEXT_PUBLIC_PROFILE_API_KEY }
-    })
+    });
 
     myProfile = response.data;
 
@@ -28,4 +28,4 @@ export const getMyProfile = async (): Promise<Profile> => {
   }
 
   return myProfile;
-}
+};
