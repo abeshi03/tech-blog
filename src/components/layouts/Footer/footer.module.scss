@@ -1,0 +1,78 @@
+@import "src/assets/styles/global/mixins/mixins";
+@import "src/assets/styles/global/valiables/valiables";
+
+.footer {
+
+  $MEDIUM_SCREENS__MINIMAL_WIDTH: 580px;
+
+  @mixin WideAndMediumScreen() {
+   @media screen and (min-width: $MEDIUM_SCREENS__MINIMAL_WIDTH) {
+     @content
+   }
+  }
+
+  @mixin SmallScreen() {
+   @media screen and (max-width: $MEDIUM_SCREENS__MINIMAL_WIDTH - 1) {
+     @content
+   }
+  }
+
+
+  width: 100%;
+
+  @include EqualTopAndBottomPaddings(43px);
+
+  background: #423A57;
+
+
+  .footerLinks {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    @include WideAndMediumScreen {
+      column-gap: 60px;
+    }
+
+
+    @include SmallScreen {
+      flex-direction: column;
+      row-gap: 30px;
+    }
+  }
+
+  .link {
+
+    color: #FFFFFF;
+    text-decoration: none;
+
+
+    &:hover {
+
+      text-decoration: underline;
+    }
+
+    &:active {
+
+      opacity: 0.5;
+    }
+
+    &:focus {
+
+      text-decoration: underline;
+    }
+  }
+
+
+  .copyright {
+
+    font-size: 12px;
+    color: #FFFFFF;
+
+    text-align: center;
+
+    margin-top: 36px;
+  }
+}
