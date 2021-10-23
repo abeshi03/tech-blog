@@ -5,14 +5,16 @@ import styles from "./iconAndLink.module.scss";
 import { TwitterIcon } from "../../../assets/icons/TwitterIcon";
 import { GithubIcon } from "../../../assets/icons/GithubIcon";
 
+type IconType = "TWITTER" | "GITHUB";
+
 type Props = {
-  iconType: "TWITTER" | "GITHUB";
+  iconType: IconType;
   label: string;
   externalLink: string;
   className?: string;
 }
 
-const selectedIcon = (iconType: string): JSX.Element => {
+const selectedIcon = (iconType: IconType): JSX.Element => {
   switch (iconType) {
     case "TWITTER": return <TwitterIcon/>;
     case "GITHUB": return <GithubIcon/>;
