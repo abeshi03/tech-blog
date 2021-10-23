@@ -20,7 +20,7 @@ const NotFound: VFC = () => {
         <title>{ Routing.NotFound.pageName }</title>
       </Head>
       <div className={styles.notFountPage}>
-        <h1>404 Not Found</h1>
+        <h1 className={styles.heading}>404 Not Found</h1>
         <AlertBox
           title="お探しのページは見つかりませんでした"
           description="申し訳ございません。お探しのページは見つかりませんでした。一時的にアクセスできない状況にあるか、移動もしくは削除された

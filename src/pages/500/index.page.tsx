@@ -17,7 +17,7 @@ const InternalServerError: VFC = () => {
         <title>{ Routing.InternalServerError.pageName }</title>
       </Head>
       <div className={styles.internalServerErrorPage}>
-        <h1>500 Internal Server Error</h1>
+        <h1 className={styles.heading}>500 Internal Server Error</h1>
         <AlertBox
           title="アクセスしようとしたページは表示できませんでした"
           description="申し訳ございません。お探しのページは表示できませんでした。メンテナンス中かサーバーでエラーが起きている可能性があります。
