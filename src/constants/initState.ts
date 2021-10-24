@@ -1,5 +1,5 @@
 // - 型定義 =============================================================================================================
-import { Profile } from "../types/profile/profile";
+import { Profile } from "../types/Profile/Profile";
 
 export const initMyProfileState: Profile = {
   familyName: "",

@@ -1,11 +1,10 @@
 // - フレームワーク, ライブラリー ===========================================================================================
-import React, { VFC } from "react";
+import React, {useEffect, VFC} from "react";
 import Head from "next/head";
 import { GetStaticProps } from "next";
-import axios from "axios";
 
 // - 型定義 =============================================================================================================
-import { Profile } from "../types/profile/profile";
+import { Profile } from "../types/Profile/Profile";
 
 // - ルーティング ========================================================================================================
 import { Routing } from "../routing/routing";
@@ -18,8 +17,7 @@ type Props = {
 }
 
 const Home: VFC<Props> = ({ myProfile }) => {
-  console.log(myProfile);
-  
+
 return(
     <>
       <Head>

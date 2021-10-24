@@ -2,7 +2,7 @@
 import axios from "axios";
 
 // - 型定義 =============================================================================================================
-import { Profile } from "../types/profile/profile";
+import { Profile } from "../types/Profile/Profile";
 
 // - state =============================================================================================================
 import { initMyProfileState } from "../constants/initState";
