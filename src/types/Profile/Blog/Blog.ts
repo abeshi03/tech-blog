@@ -1,4 +1,5 @@
 import { Category } from "../../Category";
+import { ImageType } from "../../Image";
 
 export type Blog = {
   id: string;
@@ -8,10 +9,6 @@ export type Blog = {
   revisedAt: string;
   title: string;
   blogContent__HTML: string;
-  mainImage?: {
-    url: string;
-    height: number;
-    width: number;
-  },
+  mainImage?: ImageType
   categories: Category[];
 }

@@ -1,12 +1,10 @@
+import { ImageType } from "../Image";
+
 export type Profile = {
   familyName: string;
   lastName: string;
   role: string;
-  image: {
-    url: string;
-    height: number;
-    width: number;
-  }
+  image: ImageType
   createdAt: string;
   publishedAt: string;
   revisedAt: string;
