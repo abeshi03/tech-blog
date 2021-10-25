@@ -4,5 +4,11 @@ export type Profile = {
   role: string;
   image: {
     url: string;
+    height: number;
+    width: number;
   }
+  createdAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  updatedAt: string
 }
