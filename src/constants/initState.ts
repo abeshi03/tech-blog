@@ -1,11 +1,33 @@
 // - 型定義 =============================================================================================================
 import { Profile } from "../types/Profile/Profile";
+import { Blog } from "../types/Profile/Blog/Blog";
+import { ImageType } from "../types/Image";
+
+export const initImage: ImageType = {
+  url: "",
+  width: 0,
+  height: 0
+}
 
 export const initMyProfileState: Profile = {
   familyName: "",
   lastName: "",
   role: "",
-  image: {
-    url: ""
-  }
+  image: initImage,
+  createdAt: "",
+  publishedAt: "",
+  revisedAt: "",
+  updatedAt: ""
 };
+
+export const initBlogState: Blog = {
+  id: "",
+  createdAt: "",
+  updatedAt: "",
+  publishedAt: "",
+  revisedAt: "",
+  title: "",
+  blogContent__HTML: "",
+  mainImage: initImage,
+  categories: []
+}
