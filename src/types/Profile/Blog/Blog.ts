@@ -12,3 +12,10 @@ export type Blog = {
   mainImage?: ImageType
   categories: Category[];
 }
+
+export type BlogResponseData = {
+  data: {
+    contents: Blog[];
+    totalCount: number;
+  }
+}
