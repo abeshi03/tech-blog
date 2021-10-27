@@ -14,7 +14,7 @@ import { Button } from "../../../atoms/Button/Button";
 
 type Props = {
   style?: React.CSSProperties;
-  targetProfile: Profile;
+  targetProfile: Pick<Profile, "image" | "familyName" | "lastName" | "role">;
 }
 
 const getFullName = (familyName: string, lastName: string): string => {
