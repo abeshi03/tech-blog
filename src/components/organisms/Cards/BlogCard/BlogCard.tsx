@@ -16,10 +16,11 @@ type Props = {
 const formattedCreatedAt = (targetDate: string): string => {
 
   const date: Date = new Date(targetDate);
-  return `${date.getFullYear()}/` +
+  
+return `${date.getFullYear()}/` +
     `${date.getMonth() + 1}/`　+
     `${date.getDate()}`;
-}
+};
 
 /* eslint-disable-next-line react/display-name */
 export const BlogCard: VFC<Props> = memo((props) => {
