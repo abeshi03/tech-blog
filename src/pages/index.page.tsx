@@ -51,8 +51,10 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
 
-  const myProfile: Profile = await getMyProfile();
-  const blogs: BlogResponseData = await getBlogs();
+  const [ myProfile, blogs ]: [ Profile, BlogResponseData ] = await Promise.all([
+    getMyProfile(),
+    getBlogs()
+  ]);
 
   return {
     props: {
