@@ -22,7 +22,7 @@ export async function getBlogs(): Promise<BlogResponseData> {
         contents: response.data.contents,
         totalCount: response.data.totalCount
       }
-    }
+    };
 
     return blogData;
 
