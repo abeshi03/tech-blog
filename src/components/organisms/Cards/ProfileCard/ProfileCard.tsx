@@ -5,16 +5,16 @@ import React, { memo, VFC } from "react";
 import styles from "./profileCard.module.scss";
 
 // - 型定義 =============================================================================================================
-import { Profile } from "../../../types/profile/profile";
+import { Profile } from "../../../../types/Profile/Profile";
 
 // - 子コンポーネント =====================================================================================================
-import { IconAndLink } from "../../atoms/IconAndLink/IconAndLink";
-import { ExternalLinks } from "../../../config/application/externalLinks";
-import { Button } from "../../atoms/Button/Button";
+import { IconAndLink } from "../../../molecules/IconAndLink/IconAndLink";
+import { ExternalLinks } from "../../../../config/application/externalLinks";
+import { Button } from "../../../atoms/Button/Button";
 
 type Props = {
   style?: React.CSSProperties;
-  targetProfile: Profile;
+  targetProfile: Pick<Profile, "image" | "familyName" | "lastName" | "role">;
 }
 
 const getFullName = (familyName: string, lastName: string): string => {
