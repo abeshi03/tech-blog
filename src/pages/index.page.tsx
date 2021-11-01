@@ -19,6 +19,7 @@ import { getBlogs } from "../apis/BlogAPI";
 
 // - 子コンポーネント =====================================================================================================
 import { BlogCard } from "../components/organisms/Cards/BlogCard/BlogCard";
+import {ProfileCard} from "../components/organisms/Cards/ProfileCard/ProfileCard";
 
 type Props = {
   myProfile: Profile;
@@ -34,6 +35,15 @@ const Home: VFC<Props> = (props) => {
       <Head>
         <title>{ Routing.Top.pageName }</title>
       </Head>
+      <main className={styles.topPage}>
+        <div className={styles.mainSection}>
+          <div className={styles.blogsBlock}>
+          </div>
+          <div className={styles.profileBlock}>
+            <ProfileCard targetProfile={myProfile}/>
+          </div>
+        </div>
+      </main>
     </>
   );
 };
