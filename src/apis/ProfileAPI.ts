@@ -4,28 +4,25 @@ import axios from "axios";
 // - 型定義 =============================================================================================================
 import { Profile } from "../types/Profile/Profile";
 
-// - state =============================================================================================================
-import { initMyProfileState } from "../constants/initState";
+// - 定数 ===============================================================================================================
+import { BASE_END_POINT } from "../constants/apis";
+import { X_API_KEY } from "../constants/apis";
 
 
-export const getMyProfile = async (): Promise<Profile> => {
-
-  let myProfile: Profile = initMyProfileState;
+export async function getMyProfile(): Promise<Profile> {
 
   try {
 
-    const baseEndPoint: string = process.env.NEXT_PUBLIC_ENDPOINT;
-
-    const response = await axios.get<Profile>(`${baseEndPoint}my_profile`,{
-      headers: { "X-API-KEY": process.env.NEXT_PUBLIC_PROFILE_API_KEY }
+    const response = await axios.get<Profile>(`${BASE_END_POINT}my_profile`,{
+      headers: { "X-API-KEY": X_API_KEY }
     });
 
-    myProfile = response.data;
+    const myProfile: Profile = response.data;
+    
+return myProfile;
 
   } catch (error: unknown) {
 
     throw new Error("getStaticProps_error: myProfile");
   }
-
-  return myProfile;
-};
+}
