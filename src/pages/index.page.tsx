@@ -34,15 +34,6 @@ const Home: VFC<Props> = (props) => {
       <Head>
         <title>{ Routing.Top.pageName }</title>
       </Head>
-      <h1>実装待機</h1>
-      {/*テスト表示 後ほど削除*/}
-      <div className={styles.blogsFlow}>
-        {blogs.data.contents.map((blog: Blog) => {
-          return (
-            <BlogCard targetBlog={blog} key={blog.id}/>
-          );
-        })}
-      </div>
     </>
   );
 };
