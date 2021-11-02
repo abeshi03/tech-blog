@@ -8,6 +8,7 @@ import { BlogResponseData } from "../types/Profile/Blog/Blog";
 import { BLOG_END_POINT } from "../constants/apis";
 import { X_API_KEY } from "../constants/apis";
 import { QUERY_LIMIT } from "../constants/apis";
+import { QUERY_CATEGORY_FILTERS } from "../constants/apis";
 
 export async function getBlogs({ limit }: { limit: number; }): Promise<BlogResponseData> {
 
@@ -45,7 +46,7 @@ export async function getBlogsContainCategory(
   try {
 
     const response: BlogResponseData = await axios.get(
-      BLOG_END_POINT + QUERY_LIMIT + limit + "&filters=categories[contains]" + categoryID, {
+      BLOG_END_POINT + QUERY_LIMIT + limit + QUERY_CATEGORY_FILTERS + categoryID, {
         headers: {"X-API-KEY": X_API_KEY}
     });
 
