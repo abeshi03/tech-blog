@@ -9,7 +9,7 @@ import { BLOG_END_POINT } from "../constants/apis";
 import { X_API_KEY } from "../constants/apis";
 import { QUERY_LIMIT } from "../constants/apis";
 
-export async function getBlogs(limit: number): Promise<BlogResponseData> {
+export async function getBlogs({ limit }: { limit: number; }): Promise<BlogResponseData> {
 
   try {
 
