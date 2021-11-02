@@ -60,4 +60,13 @@
     column-gap: 56px;
 
   }
+
+  .blogsCardFlow {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(276px, 1fr));
+    column-gap: 35px;
+
+    margin-top: 35px;
+  }
 }
