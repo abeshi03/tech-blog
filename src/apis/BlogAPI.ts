@@ -8,12 +8,15 @@ import { BlogResponseData } from "../types/Profile/Blog/Blog";
 import { BASE_END_POINT } from "../constants/apis";
 import { X_API_KEY } from "../constants/apis";
 
-export async function getBlogs(): Promise<BlogResponseData> {
+export async function getBlogs(limit: number): Promise<BlogResponseData> {
 
+
+  const BASE_URL: string = `${BASE_END_POINT}blog`;
+  const QUERY_LIMIT: string = "?limit=";
 
   try {
 
-    const response: BlogResponseData = await axios.get(`${BASE_END_POINT}blog`, {
+    const response: BlogResponseData = await axios.get(BASE_URL + QUERY_LIMIT + limit, {
       headers: { "X-API-KEY": X_API_KEY }
     });
 
