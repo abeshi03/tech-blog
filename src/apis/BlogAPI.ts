@@ -5,18 +5,15 @@ import axios from "axios";
 import { BlogResponseData } from "../types/Profile/Blog/Blog";
 
 // - 定数 ===============================================================================================================
-import { BASE_END_POINT } from "../constants/apis";
+import { BLOG_END_POINT } from "../constants/apis";
 import { X_API_KEY } from "../constants/apis";
+import { QUERY_LIMIT } from "../constants/apis";
 
 export async function getBlogs(limit: number): Promise<BlogResponseData> {
 
-
-  const BASE_URL: string = `${BASE_END_POINT}blog`;
-  const QUERY_LIMIT: string = "?limit=";
-
   try {
 
-    const response: BlogResponseData = await axios.get(BASE_URL + QUERY_LIMIT + limit, {
+    const response: BlogResponseData = await axios.get(BLOG_END_POINT + QUERY_LIMIT + limit, {
       headers: { "X-API-KEY": X_API_KEY }
     });
 
@@ -28,6 +25,38 @@ export async function getBlogs(limit: number): Promise<BlogResponseData> {
     };
 
     return blogData;
+
+  } catch (error: unknown) {
+    console.log(error);
+    throw new Error("API ERROR: getBlogs");
+  }
+}
+
+export async function getBlogsContainCategory(
+  {
+    limit,
+    categoryID
+  }: {
+    limit: number;
+    categoryID: string;
+  }
+): Promise<BlogResponseData> {
+
+  try {
+
+    const response: BlogResponseData = await axios.get(
+      BLOG_END_POINT + QUERY_LIMIT + limit + "&filters=categories[contains]" + categoryID, {
+        headers: {"X-API-KEY": X_API_KEY}
+    });
+
+    const blogContainCategoryData: BlogResponseData = {
+      data: {
+        contents: response.data.contents,
+        totalCount: response.data.totalCount
+      }
+    };
+
+    return blogContainCategoryData;
 
   } catch (error: unknown) {
     console.log(error);
