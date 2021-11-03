@@ -5,20 +5,20 @@ import axios from "axios";
 import { Profile } from "../types/Profile/Profile";
 
 // - 定数 ===============================================================================================================
-import { BASE_END_POINT } from "../constants/apis";
 import { X_API_KEY } from "../constants/apis";
+import { PROFILE_END_POINT } from "../constants/apis";
 
 
 export async function getMyProfile(): Promise<Profile> {
 
   try {
 
-    const response = await axios.get<Profile>(`${BASE_END_POINT}my_profile`,{
+    const response = await axios.get<Profile>(PROFILE_END_POINT,{
       headers: { "X-API-KEY": X_API_KEY }
     });
 
     const myProfile: Profile = response.data;
-    
+
 return myProfile;
 
   } catch (error: unknown) {

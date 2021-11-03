@@ -1,7 +1,114 @@
-//表示確認用後ほど削除
-.blogsFlow {
+@import "src/assets/styles/global/mixins/mixins";
+@import "src/assets/styles/global/valiables/valiables";
 
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+.topPage {
+
+  $MAX_CONTENT_WIDTH: 1280px;
+  $LEFT_OR_RIGHT_MINIMAL_EQUAL_PADDINGS__WIDE_SCREENS: 34px;
+
+  $wideScreen: $MAX_CONTENT_WIDTH+2*$LEFT_OR_RIGHT_MINIMAL_EQUAL_PADDINGS__WIDE_SCREENS;
+
+  $MEDIUM_SCREENS__MINIMAL_WIDTH: 1024px;
+
+  @mixin WideScreen() {
+   @media screen and (min-width: $wideScreen) {
+     @content
+   }
+  }
+
+  @mixin MediumScreen() {
+   @media screen and (min-width: $MEDIUM_SCREENS__MINIMAL_WIDTH) and (max-width: $wideScreen - 1) {
+     @content
+   }
+  }
+
+  @mixin SmallScreen() {
+   @media screen and (max-width: $MEDIUM_SCREENS__MINIMAL_WIDTH - 1) {
+     @content
+   }
+  }
+
+  @mixin WideAndMediumScreen() {
+   @media screen and (min-width: $MEDIUM_SCREENS__MINIMAL_WIDTH) {
+     @content
+   }
+  }
+
+  @mixin MediumAndSmallScreen() {
+   @media screen and (max-width: $wideScreen - 1) {
+     @content
+   }
+  }
+
+  background: $BASE_COLOR_BLUE_GRAY;
+
+  padding-top: 46px;
+
+
+  .mainSection {
+
+    @include WideScreen() {
+      @include CenteredContentWithComputedSidePaddings($MAX_CONTENT_WIDTH);
+    }
+
+    @include MediumAndSmallScreen() {
+      @include EqualLeftAndRightPaddings(5%);
+    }
+
+    display: grid;
+
+    @include WideAndMediumScreen {
+
+      grid-template-columns: 1fr 325px;
+      column-gap: 56px;
+    }
+
+
+    @include SmallScreen {
+
+      row-gap: 50px;
+    }
+  }
+
+
+  .headingContainer {
+
+    margin-top: 35px;
+
+    &:first-child {
+
+      margin-top: 0px;
+    }
+  }
+
+
+  .blogsCardFlow {
+
+    display: grid;
+
+    margin-top: 35px;
+
+
+    @include WideAndMediumScreen {
+
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 35px 20px;
+    }
+
+
+    @include SmallScreen {
+
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+
+    &:last-child {
+
+      @include WideAndMediumScreen {
+
+        margin-bottom: 90px;
+      }
+    }
+  }
 }
