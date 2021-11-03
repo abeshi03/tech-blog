@@ -30,9 +30,41 @@ type Props = {
   vueJsBlogs: BlogResponseData;
 }
 
+type PostGroup = {
+  id: number;
+  heading: string;
+  linkName: string;
+  path: string;
+  posts: BlogResponseData;
+}
+
 const Home: VFC<Props> = (props) => {
 
   const { myProfile, blogs, nextJsBlogs, vueJsBlogs } = props;
+
+  const blogGroups: PostGroup[] = [
+    {
+      id: 1,
+      heading: "新着記事",
+      linkName: "記事一覧",
+      path: "#",
+      posts: blogs
+    },
+    {
+      id: 2,
+      heading: "Next.js",
+      linkName: "Next.jsの記事一覧",
+      path: "#",
+      posts: nextJsBlogs
+    },
+    {
+      id: 3,
+      heading: "Vue.js",
+      linkName: "Vue.jsの記事一覧",
+      path: "#",
+      posts: vueJsBlogs
+    }
+  ];
 
   return(
     <>
@@ -45,44 +77,28 @@ const Home: VFC<Props> = (props) => {
           {/*　ブログ記事 ============================================================================================= */}
           <div className={styles.blogsBlock}>
 
-            <HeadingAndLink
-              heading="新着記事"
-              linkName="記事一覧"
-              path="#"
-            />
-            <div className={styles.blogsCardFlow}>
-              {blogs.data.contents.map((blog: Blog) => (
-                <BlogCard key={blog.id} targetBlog={blog}/>
-              ))}
-            </div>
+            {blogGroups.map((postBlogGroup: PostGroup) => (
+              <React.Fragment key={postBlogGroup.id}>
 
-            <HeadingAndLink
-              heading="Next.js"
-              linkName="Next.jsの記事一覧"
-              path="#"
-              style={{marginTop: "35px"}}
-            />
-            <div className={styles.blogsCardFlow}>
-              {nextJsBlogs.data.contents.map((blog: Blog) => (
-                <BlogCard key={blog.id} targetBlog={blog}/>
-              ))}
-            </div>
+                <div className={styles.headingContainer}>
+                  <HeadingAndLink
+                    heading={postBlogGroup.heading}
+                    linkName={postBlogGroup.linkName}
+                    path={postBlogGroup.path}
+                  />
+                </div>
 
-            <HeadingAndLink
-              heading="Vue.js"
-              linkName="Vue.jsの記事一覧"
-              path="#"
-              style={{marginTop: "35px"}}
-            />
-            <div className={styles.blogsCardFlow}>
-              {vueJsBlogs.data.contents.map((blog: Blog) => (
-                <BlogCard key={blog.id} targetBlog={blog}/>
-              ))}
-            </div>
+                <div className={styles.blogsCardFlow}>
+                  {postBlogGroup.posts.data.contents.map((blog: Blog) => (
+                    <BlogCard
+                      key={blog.id}
+                      targetBlog={blog}/>
+                  ))}
+                </div>
 
+              </React.Fragment>
+            ))}
           </div>
-
-
 
           {/*プロフィール ============================================================================================= */}
           <div className={styles.profileBlock}>

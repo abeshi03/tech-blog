@@ -71,6 +71,17 @@
   }
 
 
+  .headingContainer {
+
+    margin-top: 35px;
+
+    &:first-child {
+
+      margin-top: 0px;
+    }
+  }
+
+
   .blogsCardFlow {
 
     display: grid;
