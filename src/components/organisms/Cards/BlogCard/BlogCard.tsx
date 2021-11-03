@@ -32,7 +32,7 @@ export const BlogCard: VFC<Props> = memo((props) => {
 
   const onClickBlogDetailsPage = (): void => {
     router.push(Routing.Blog.Details.path.replace("[id]", targetBlog.id));
-  }
+  };
 
 return (
     <div className={styles.blogCard} style={style} onClick={onClickBlogDetailsPage}>
