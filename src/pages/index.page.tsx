@@ -121,7 +121,7 @@ export const getStaticProps: GetStaticProps = async () => {
     getMyProfile(),
     getBlogs({ limit: 3 }),
     getBlogsContainCategory({ limit: 3, categoryID: nextJsCategoryID }),
-    getBlogsContainCategory({ limit: 3, categoryID: vueJsCategoryID }),
+    getBlogsContainCategory({ limit: 3, categoryID: vueJsCategoryID })
   ]);
 
   return {
