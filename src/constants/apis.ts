@@ -7,5 +7,8 @@ export const BLOG_END_POINT: string = `${BASE_END_POINT}blog/`;
 // - プロフィール
 export const PROFILE_END_POINT: string = `${BASE_END_POINT}my_profile/`;
 
+// - カテゴリー
+export const CATEGORY_END_POINT: string = `${BASE_END_POINT}categories/`
+
 // - API_KEY ===========================================================================================================
 export const X_API_KEY: string = process.env.NEXT_PUBLIC_PROFILE_API_KEY;
