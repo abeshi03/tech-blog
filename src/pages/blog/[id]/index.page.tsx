@@ -18,7 +18,11 @@ import { Category } from "../../../types/Category";
 
 // - 子コンポーネント =====================================================================================================
 import { Breadcrumb, BreadcrumbLink } from "../../../components/atoms/Breadcrumb/Breadcrumb";
-import {CategoryBadge} from "../../../components/atoms/CategoryBadge/CategoryBadge";
+import { CategoryBadge } from "../../../components/atoms/CategoryBadge/CategoryBadge";
+
+// - このページでしか使わないコンポーネント ===================================================================================
+import { TableOfContents } from "./_PageContent/TableOfContents/TableOfContents";
+
 
 type Props = {
   blog: Blog
@@ -71,7 +75,9 @@ const BlogDetails: VFC<Props> = (props) => {
         </div>
 
         {/* サイドバー ===============================================================================================　*/}
-        <div className={styles.sideBar}></div>
+        <div className={styles.sideBar}>
+          <TableOfContents/>
+        </div>
       </div>
     </main>
   );
