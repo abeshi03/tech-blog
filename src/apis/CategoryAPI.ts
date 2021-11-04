@@ -21,7 +21,7 @@ export async function getCategories(): Promise<CategoryResponseData> {
         contents: response.data.contents,
         totalCount: response.data.totalCount
       }
-    }
+    };
 
     return categoriesData;
 

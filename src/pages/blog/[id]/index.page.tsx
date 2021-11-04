@@ -37,7 +37,7 @@ const formattedPublishedDate = (targetDate: string): string => {
   return `${ publishedDate.getFullYear()}年` +
           `${ publishedDate.getMonth() + 1}月` +
           `${ publishedDate.getDate()}日`;
-}
+};
 
 const BlogDetails: VFC<Props> = (props) => {
 
@@ -55,7 +55,7 @@ const BlogDetails: VFC<Props> = (props) => {
     {
       label: blog.title
     }
-  ]
+  ];
 
   return (
     <main className={styles.blogDetailsPage}>
@@ -71,7 +71,7 @@ const BlogDetails: VFC<Props> = (props) => {
 
           <div className={styles.categoriesFlow}>
             {blog.categories.map((category: Category) => (
-              <CategoryBadge category={category}/>
+              <CategoryBadge category={category} key={category.id}/>
             ))}
           </div>
         </div>
@@ -95,8 +95,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const blogData: BlogResponseData = await getBlogs({ limit: 100 });
 
-  const paths = blogData.data.contents.map((content) => `/blog/${content.id}`)
-  return { paths, fallback: false}
+  const paths = blogData.data.contents.map((content) => `/blog/${content.id}`);
+
+return { paths, fallback: false};
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -112,5 +113,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
       blog: responseData,
       categories
     }
-  }
-}
+  };
+};

@@ -86,9 +86,10 @@ export async function getBlogData(
 
     const response = await axios.get<Blog>(BLOG_END_POINT + id, {
       headers: { "X-API-KEY": X_API_KEY }
-    })
+    });
 
-    const blogData: Blog = response.data
+    const blogData: Blog = response.data;
+
     return blogData;
 
   } catch (error: unknown) {
