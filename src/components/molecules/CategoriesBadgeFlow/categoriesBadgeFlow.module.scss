@@ -1,0 +1,16 @@
+@import "src/assets/styles/global/mixins/mixins";
+@import "src/assets/styles/global/valiables/valiables";
+
+.categoriesBadgeFlow {
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  @include EqualLeftAndRightPaddings(15px);
+  @include EqualTopAndBottomPaddings(20px);
+
+  background: #FFFFFF;
+  box-shadow: 0 -3px 10px rgba(#123D52, 0.2);
+  border-radius: 20px;
+}

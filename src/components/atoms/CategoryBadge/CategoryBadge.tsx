@@ -8,7 +8,7 @@ import styles from "./categoryBadge.module.scss";
 import { Category } from "../../../types/Category";
 
 type Props = {
-  category: Pick<Category, "id" | "name">
+  category: Pick<Category, "id" | "name">;
 }
 
 /* eslint-disable-next-line react/display-name */
