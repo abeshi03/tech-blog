@@ -3,8 +3,8 @@
 
 .categoryBadge {
 
-  @include EqualLeftAndRightPaddings(7px);
-  @include EqualTopAndBottomPaddings(10px);
+  @include EqualLeftAndRightPaddings(10px);
+  @include EqualTopAndBottomPaddings(6px);
 
   background: $MAIN_COLOR_SKY_BLUE;
   color: white;
