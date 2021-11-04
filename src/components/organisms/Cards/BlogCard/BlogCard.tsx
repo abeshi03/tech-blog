@@ -5,10 +5,16 @@ import { useRouter } from "next/router";
 // - アセット ============================================================================================================
 import styles from "./blogCard.module.scss";
 
+// - ルーディング ========================================================================================================
+import { Routing } from "../../../../routing/routing";
+
 // - 型定義 =============================================================================================================
 import { Blog } from "../../../../types/Profile/Blog/Blog";
 import { Category } from "../../../../types/Category";
-import {Routing} from "../../../../routing/routing";
+
+// - 子コンポーネント =====================================================================================================
+import { CategoryBadge } from "../../../atoms/CategoryBadge/CategoryBadge";
+
 
 type Props = {
   style?: React.CSSProperties;
@@ -40,7 +46,7 @@ return (
 
       <div className={styles.categoriesFlow}>
         {targetBlog.categories.map((category: Category) => (
-          <div className={styles.category} key={category.id}>{ category.name }</div>
+          <CategoryBadge key={category.id} category={category}/>
         ))}
       </div>
 
