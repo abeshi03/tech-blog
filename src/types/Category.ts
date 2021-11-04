@@ -8,5 +8,8 @@ export type Category = {
 }
 
 export type CategoryResponseData = {
-  contents: Category[];
+  data: {
+    contents: Category[];
+    totalCount: number;
+  }
 }

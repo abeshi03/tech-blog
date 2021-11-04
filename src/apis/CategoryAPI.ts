@@ -17,7 +17,10 @@ export async function getCategories(): Promise<CategoryResponseData> {
     });
 
     const categoriesData: CategoryResponseData = {
-      contents: response.contents
+      data: {
+        contents: response.data.contents,
+        totalCount: response.data.totalCount
+      }
     }
 
     return categoriesData;
