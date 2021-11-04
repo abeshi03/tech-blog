@@ -1,6 +1,5 @@
 // - フレームワーク, ライブラリー ===========================================================================================
 import React, { VFC } from "react";
-import Link from "next/link";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 // - アセット ===========================================================================================================
@@ -11,21 +10,24 @@ import { Routing } from "../../../routing/routing";
 
 // - api ===============================================================================================================
 import { getBlogData, getBlogs } from "../../../apis/BlogAPI";
+import { getCategories } from "../../../apis/CategoryAPI";
 
 // - 型定義 =============================================================================================================
 import { Blog, BlogResponseData } from "../../../types/Profile/Blog/Blog";
-import { Category } from "../../../types/Category";
+import { Category, CategoryResponseData } from "../../../types/Category";
 
 // - 子コンポーネント =====================================================================================================
 import { Breadcrumb, BreadcrumbLink } from "../../../components/atoms/Breadcrumb/Breadcrumb";
 import { CategoryBadge } from "../../../components/atoms/CategoryBadge/CategoryBadge";
+import { CategoriesBadgeFlow } from "../../../components/molecules/CategoriesBadgeFlow/CategoriesBadgeFlow";
 
 // - このページでしか使わないコンポーネント ===================================================================================
 import { TableOfContents } from "./_PageContent/TableOfContents/TableOfContents";
 
 
 type Props = {
-  blog: Blog
+  blog: Blog;
+  categories: CategoryResponseData;
 }
 
 const formattedPublishedDate = (targetDate: string): string => {
@@ -39,7 +41,7 @@ const formattedPublishedDate = (targetDate: string): string => {
 
 const BlogDetails: VFC<Props> = (props) => {
 
-  const { blog } = props;
+  const { blog, categories } = props;
 
   const breadcrumbLinks: BreadcrumbLink[] = [
     {
@@ -77,6 +79,10 @@ const BlogDetails: VFC<Props> = (props) => {
         {/* サイドバー ===============================================================================================　*/}
         <div className={styles.sideBar}>
           <TableOfContents/>
+          <CategoriesBadgeFlow
+            categories={categories.data.contents}
+            style={{marginTop: "30px"}}
+          />
         </div>
       </div>
     </main>
@@ -97,11 +103,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const id: string = context.params.id.toString();
 
-  const responseData: Blog = await getBlogData({ id })
+  const responseData: Blog = await getBlogData({ id });
+
+  const categories: CategoryResponseData = await getCategories();
 
   return {
     props: {
-      blog: responseData
+      blog: responseData,
+      categories
     }
   }
 }
