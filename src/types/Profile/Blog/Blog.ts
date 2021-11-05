@@ -8,7 +8,7 @@ export type Blog = {
   publishedAt: string;
   revisedAt: string;
   title: string;
-  blogContent__HTML: string;
+  blogContent: string;
   mainImage?: ImageType
   categories: Category[];
 }
