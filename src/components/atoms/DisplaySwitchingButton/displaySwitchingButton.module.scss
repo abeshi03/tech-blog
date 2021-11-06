@@ -1,0 +1,41 @@
+@import "src/assets/styles/global/mixins/mixins";
+@import "src/assets/styles/global/valiables/valiables";
+
+.displaySwitchingButton {
+
+  .flexContainer {
+
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+
+    cursor: pointer;
+
+
+    &:hover {
+
+      text-decoration: underline;
+    }
+
+
+    &:active {
+
+      opacity: 0.7;
+    }
+
+
+    &:focus {
+
+      text-decoration: underline;
+    }
+  }
+
+
+
+  .icon {
+
+    @include EqualWidthAndHeight(20px);
+
+    fill: $ACCENT_COLOR_PURPLE;
+  }
+}
