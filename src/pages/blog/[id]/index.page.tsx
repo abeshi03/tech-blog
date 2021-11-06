@@ -138,7 +138,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   // - 目次 =============================================================================================================
   // - 参考 https://blog.microcms.io/create-table-of-contents/
-  const headings = $("h2, h3, h4").toArray()
+  const headings = $("h2, h3, h4").toArray();
 
   const tableOfContents: TableOfContentType[] = headings.map((data) => {
 
@@ -147,8 +147,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
       heading: data.children[0].data.toString(),
       targetTableOfContentID: data.attribs.id,
       htmlElementTagName: data.name,
-    }
-  })
+    };
+  });
 
   return {
     props: {
