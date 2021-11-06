@@ -2,7 +2,7 @@
 import axios from "axios";
 
 // - 型定義 =============================================================================================================
-import { Blog, BlogResponseData } from "../types/Profile/Blog/Blog";
+import { Blog, BlogResponseData } from "../types/Blog/Blog";
 
 // - 定数 ===============================================================================================================
 import { BLOG_END_POINT } from "../constants/apis";

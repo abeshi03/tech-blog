@@ -9,7 +9,7 @@ import styles from "./blogCard.module.scss";
 import { Routing } from "../../../../routing/routing";
 
 // - 型定義 =============================================================================================================
-import { Blog } from "../../../../types/Profile/Blog/Blog";
+import { Blog } from "../../../../types/Blog/Blog";
 import { Category } from "../../../../types/Category";
 
 // - 子コンポーネント =====================================================================================================

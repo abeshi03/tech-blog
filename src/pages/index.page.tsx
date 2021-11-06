@@ -5,7 +5,7 @@ import { GetStaticProps } from "next";
 
 // - 型定義 =============================================================================================================
 import { Profile } from "../types/Profile/Profile";
-import { Blog, BlogResponseData } from "../types/Profile/Blog/Blog";
+import { Blog, BlogResponseData } from "../types/Blog/Blog";
 
 // - ルーティング ========================================================================================================
 import { Routing } from "../routing/routing";
