@@ -96,6 +96,7 @@ const BlogDetailsPage: VFC<Props> = (props) => {
             <TableOfContents tableOfContents={tableOfContents}/>
           </div>
 
+          <h3 className={styles.heading3}>カテゴリーで探す</h3>
           <div className={styles.categoriesBadgeFlow}>
             <CategoriesBadgeFlow
               categories={categories.data.contents}
