@@ -1,9 +1,9 @@
 // - フレームワーク, ライブラリー ===========================================================================================
 import React, { VFC } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
-import cheerio from 'cheerio';
-import hljs from 'highlight.js'
-import 'highlight.js/styles/shades-of-purple.css'
+import cheerio from "cheerio";
+import hljs from "highlight.js";
+import "highlight.js/styles/shades-of-purple.css";
 
 // - アセット ===========================================================================================================
 import styles from "./blogDetailsPage.module.scss";
@@ -43,7 +43,7 @@ const formattedPublishedDate = (targetDate: string): string => {
           `${ publishedDate.getDate()}日`;
 };
 
-const BlogDetails: VFC<Props> = (props) => {
+const BlogDetailsPage: VFC<Props> = (props) => {
 
   const { blog, categories, highlightedBody } = props;
 
@@ -106,11 +106,11 @@ const BlogDetails: VFC<Props> = (props) => {
   );
 };
 
-export default BlogDetails;
+export default BlogDetailsPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
 
-  const blogData: BlogResponseData = await getBlogs({ limit: 100 });
+  const blogData: BlogResponseData = await getBlogs({ limit: 100, offset: 0 });
 
   const paths = blogData.data.contents.map((content) => `/blog/${content.id}`);
 
@@ -122,18 +122,17 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const id: string = context.params.id.toString();
 
   const responseData: Blog = await getBlogData({ id });
-
   const categories: CategoryResponseData = await getCategories();
 
   // - シンタックスハイライト ==============================================================================================
   // 参考 https://blog.microcms.io/syntax-highlighting-on-server-side/
   const $ = cheerio.load(responseData.blogContent);
 
-  $('pre code').each((_, elm) => {
-    const result = hljs.highlightAuto($(elm).text())
-    $(elm).html(result.value)
-    $(elm).addClass('hljs')
-  })
+  $("pre code").each((_, elm) => {
+    const result = hljs.highlightAuto($(elm).text());
+    $(elm).html(result.value);
+    $(elm).addClass("hljs");
+  });
   // -  ================================================================================================================
 
   return {
