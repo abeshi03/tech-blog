@@ -120,9 +120,9 @@ export const getStaticProps: GetStaticProps = async () => {
   const [ myProfile, blogs, nextJsBlogs, vueJsBlogs ]: [ Profile, BlogResponseData, BlogResponseData, BlogResponseData ] =
     await Promise.all([
       getMyProfile(),
-      getBlogs({ limit: 3 }),
-      getBlogsContainCategory({ limit: 3, categoryID: nextJsCategoryID }),
-      getBlogsContainCategory({ limit: 3, categoryID: vueJsCategoryID })
+      getBlogs({ limit: 3, offset: 0 }),
+      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: nextJsCategoryID }),
+      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: vueJsCategoryID })
     ]);
 
   return {
