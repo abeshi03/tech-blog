@@ -97,11 +97,10 @@ const BlogDetailsPage: VFC<Props> = (props) => {
           </div>
 
           <h3 className={styles.heading3}>カテゴリーで探す</h3>
-          <div className={styles.categoriesBadgeFlow}>
-            <CategoriesBadgeFlow
-              categories={categories.data.contents}
-            />
-          </div>
+          <CategoriesBadgeFlow
+            categories={categories.data.contents}
+            style={{marginTop: "15px"}}
+          />
 
         </div>
       </div>
