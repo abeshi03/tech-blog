@@ -144,7 +144,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     return {
       // @ts-ignore
-      heading: data.children[0].data.toString(),
+      heading: String(data.children[0].data),
       targetTableOfContentID: data.attribs.id,
       htmlElementTagName: data.name,
     };
