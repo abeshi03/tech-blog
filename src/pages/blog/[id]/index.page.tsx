@@ -1,6 +1,9 @@
 // - フレームワーク, ライブラリー ===========================================================================================
 import React, { VFC } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
+import cheerio from 'cheerio';
+import hljs from 'highlight.js'
+import 'highlight.js/styles/shades-of-purple.css'
 
 // - アセット ===========================================================================================================
 import styles from "./blogDetailsPage.module.scss";
@@ -28,6 +31,7 @@ import { TableOfContents } from "./_PageContent/TableOfContents/TableOfContents"
 type Props = {
   blog: Blog;
   categories: CategoryResponseData;
+  highlightedBody: string;
 }
 
 const formattedPublishedDate = (targetDate: string): string => {
@@ -41,7 +45,7 @@ const formattedPublishedDate = (targetDate: string): string => {
 
 const BlogDetails: VFC<Props> = (props) => {
 
-  const { blog, categories } = props;
+  const { blog, categories, highlightedBody } = props;
 
   const breadcrumbLinks: BreadcrumbLink[] = [
     {
@@ -76,9 +80,9 @@ const BlogDetails: VFC<Props> = (props) => {
           </div>
 
           <div className={styles.blogContent}
-            dangerouslySetInnerHTML={{
-              __html: `${blog.blogContent}`
-            }}
+               dangerouslySetInnerHTML={{
+                 __html: highlightedBody
+               }}
           />
 
         </div>
@@ -115,10 +119,22 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const categories: CategoryResponseData = await getCategories();
 
+  // - シンタックスハイライト ==============================================================================================
+  // 参考 https://blog.microcms.io/syntax-highlighting-on-server-side/
+  const $ = cheerio.load(responseData.blogContent);
+
+  $('pre code').each((_, elm) => {
+    const result = hljs.highlightAuto($(elm).text())
+    $(elm).html(result.value)
+    $(elm).addClass('hljs')
+  })
+  // -  ================================================================================================================
+
   return {
     props: {
       blog: responseData,
-      categories
+      categories,
+      highlightedBody: $.html()
     }
   };
 };
