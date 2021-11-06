@@ -40,24 +40,30 @@
    }
   }
 
+
+  $LEFT_AND_RIGHT_CONTENT_WIDTH_PERCENTAGE: 5%;
+
   background: $BASE_COLOR_BLUE_GRAY;
 
 
   .mainSection {
 
-    display: grid;
-    grid-template-columns: 1fr 325px;
-    column-gap: 32px;
 
     margin-top: 35px;
 
+
     @include WideScreen() {
+
+      display: grid;
+      grid-template-columns: 1fr 325px;
+      column-gap: 32px;
+
       @include CenteredContentWithComputedSidePaddings($MAX_CONTENT_WIDTH);
     }
 
 
     @include MediumAndSmallScreen() {
-      @include EqualLeftAndRightPaddings(5%);
+      @include EqualLeftAndRightPaddings($LEFT_AND_RIGHT_CONTENT_WIDTH_PERCENTAGE);
     }
   }
 
@@ -83,8 +89,6 @@
 
   .blogContent {
 
-    @include EqualTopAndBottomPaddings(30px);
-    @include EqualLeftAndRightPaddings(2%);
 
     background: #FFFFFF;
     box-shadow: 0 -3px 10px rgba(#123D52, 0.2);
@@ -92,6 +96,19 @@
 
     margin-top: 30px;
 
+    @include WideAndMediumScreen() {
+
+      @include EqualTopAndBottomPaddings(30px);
+      @include EqualLeftAndRightPaddings(2%);
+    }
+
+
+    @include SmallScreen() {
+
+      @include EqualTopAndBottomPaddings(30px);
+      @include EqualLeftAndRightPaddings($LEFT_AND_RIGHT_CONTENT_WIDTH_PERCENTAGE);
+      @include EqualLeftAndRightMargin(- $LEFT_AND_RIGHT_CONTENT_WIDTH_PERCENTAGE)
+    }
 
     @mixin headingBorderBottom() {
 
@@ -129,11 +146,48 @@
     }
 
 
+    pre {
+
+      max-width: 900px;
+
+      border-radius: 3px;
+      line-height: 24px;
+      letter-spacing: 0.3px;
+
+
+      code {
+
+        border-radius: 5px;
+      }
+    }
+
+
     p {
 
       font-size: 14px;
       letter-spacing: 1.05px;
       line-height: 22px;
+    }
+  }
+
+  // - 目次 =============================================================================================================
+  .TableOfContents {
+
+    @include MediumAndSmallScreen() {
+
+      display: none;
+    }
+  }
+
+
+  // - カテゴリー一覧 =====================================================================================================
+  .categoriesBadgeFlow {
+
+    margin-top: 30px;
+
+    @include SmallScreen() {
+
+      @include EqualLeftAndRightMargin(- $LEFT_AND_RIGHT_CONTENT_WIDTH_PERCENTAGE);
     }
   }
 }

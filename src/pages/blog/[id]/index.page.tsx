@@ -89,11 +89,17 @@ const BlogDetails: VFC<Props> = (props) => {
 
         {/* サイドバー ===============================================================================================　*/}
         <div className={styles.sideBar}>
-          <TableOfContents/>
-          <CategoriesBadgeFlow
-            categories={categories.data.contents}
-            style={{marginTop: "30px"}}
-          />
+
+          <div className={styles.TableOfContents}>
+            <TableOfContents/>
+          </div>
+
+          <div className={styles.categoriesBadgeFlow}>
+            <CategoriesBadgeFlow
+              categories={categories.data.contents}
+            />
+          </div>
+
         </div>
       </div>
     </main>
