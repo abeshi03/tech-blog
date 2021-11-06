@@ -1,13 +1,18 @@
 // - フレームワーク =======================================================================================================
 import React, { memo, VFC } from "react";
 import styles from "./tableOfContents.module.scss";
+import { TableOfContentType } from "../../../../../types/Blog/TableOfContentType";
 
 // - アセット ===========================================================================================================
 
-/* eslint-disable-next-line react/display-name */
-export const TableOfContents: VFC = memo((props) => {
+type Props = {
+  tableOfContents: TableOfContentType[];
+}
 
-  // const {$END$} = props;
+/* eslint-disable-next-line react/display-name */
+export const TableOfContents: VFC<Props> = memo((props) => {
+
+  const { tableOfContents } = props;
 
   return (
     <div className={styles.tableOfContents}>

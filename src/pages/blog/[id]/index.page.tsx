@@ -16,8 +16,9 @@ import { getBlogData, getBlogs } from "../../../apis/BlogAPI";
 import { getCategories } from "../../../apis/CategoryAPI";
 
 // - 型定義 =============================================================================================================
-import { Blog, BlogResponseData } from "../../../types/Profile/Blog/Blog";
+import { Blog, BlogResponseData } from "../../../types/Blog/Blog";
 import { Category, CategoryResponseData } from "../../../types/Category";
+import { TableOfContentType } from "../../../types/Blog/TableOfContentType";
 
 // - 子コンポーネント =====================================================================================================
 import { Breadcrumb, BreadcrumbLink } from "../../../components/atoms/Breadcrumb/Breadcrumb";
@@ -32,6 +33,7 @@ type Props = {
   blog: Blog;
   categories: CategoryResponseData;
   highlightedBody: string;
+  tableOfContents: TableOfContentType[];
 }
 
 const formattedPublishedDate = (targetDate: string): string => {
@@ -45,7 +47,7 @@ const formattedPublishedDate = (targetDate: string): string => {
 
 const BlogDetailsPage: VFC<Props> = (props) => {
 
-  const { blog, categories, highlightedBody } = props;
+  const { blog, categories, highlightedBody, tableOfContents } = props;
 
   const breadcrumbLinks: BreadcrumbLink[] = [
     {
@@ -91,7 +93,7 @@ const BlogDetailsPage: VFC<Props> = (props) => {
         <div className={styles.sideBar}>
 
           <div className={styles.TableOfContents}>
-            <TableOfContents/>
+            <TableOfContents tableOfContents={tableOfContents}/>
           </div>
 
           <div className={styles.categoriesBadgeFlow}>
@@ -125,7 +127,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const categories: CategoryResponseData = await getCategories();
 
   // - シンタックスハイライト ==============================================================================================
-  // 参考 https://blog.microcms.io/syntax-highlighting-on-server-side/
+  // - 参考 https://blog.microcms.io/syntax-highlighting-on-server-side/
   const $ = cheerio.load(responseData.blogContent);
 
   $("pre code").each((_, elm) => {
@@ -133,13 +135,27 @@ export const getStaticProps: GetStaticProps = async (context) => {
     $(elm).html(result.value);
     $(elm).addClass("hljs");
   });
-  // -  ================================================================================================================
+
+  // - 目次 =============================================================================================================
+  // - 参考 https://blog.microcms.io/create-table-of-contents/
+  const headings = $("h2, h3, h4").toArray()
+
+  const tableOfContents: TableOfContentType[] = headings.map((data) => {
+
+    return {
+      // @ts-ignore
+      heading: data.children[0].data.toString(),
+      targetTableOfContentID: data.attribs.id,
+      htmlElementTagName: data.name,
+    }
+  })
 
   return {
     props: {
       blog: responseData,
       categories,
-      highlightedBody: $.html()
+      highlightedBody: $.html(),
+      tableOfContents
     }
   };
 };
