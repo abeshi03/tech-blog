@@ -11,10 +11,26 @@
   border-radius: 30px;
 
 
+  .headingContainer {
+
+    display: flex;
+    column-gap: 10px;
+  }
+
+
+  .icon {
+
+    @include EqualWidthAndHeight(15px);
+
+    fill: $ACCENT_COLOR_PURPLE;
+  }
+
   .heading {
 
     font-size: 16px;
     font-weight: bold;
+
+    margin-top: 2px;
   }
 
 
