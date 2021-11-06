@@ -74,6 +74,13 @@ const BlogDetails: VFC<Props> = (props) => {
               <CategoryBadge category={category} key={category.id}/>
             ))}
           </div>
+
+          <div className={styles.blogContent}
+            dangerouslySetInnerHTML={{
+              __html: `${blog.blogContent}`
+            }}
+          />
+
         </div>
 
         {/* サイドバー ===============================================================================================　*/}
