@@ -1,9 +1,13 @@
 // - フレームワーク =======================================================================================================
 import React, { memo, VFC } from "react";
-import styles from "./tableOfContents.module.scss";
-import { TableOfContentType } from "../../../../../types/Blog/TableOfContentType";
+import { Link as Scroll } from 'react-scroll'; // -  Next.jsのLinkコンポーネントと混合する為Scrollに変更
 
 // - アセット ===========================================================================================================
+import styles from "./tableOfContents.module.scss";
+
+// - 型定義 =============================================================================================================
+import { TableOfContentType } from "../../../../../types/Blog/TableOfContentType";
+
 
 type Props = {
   tableOfContents: TableOfContentType[];
@@ -16,7 +20,24 @@ export const TableOfContents: VFC<Props> = memo((props) => {
 
   return (
     <div className={styles.tableOfContents}>
-      <p style={{padding: "20px"}}>目次(実装待機)</p>
+
+      <div className={styles.heading}>目次</div>
+
+       <ul className={styles.tableOfContentsFlow}>
+         {tableOfContents.map((tableOfContent: TableOfContentType, index: number) => (
+
+           <li className={styles.tableOfContent}>
+             <div className={styles.ableOfContentNumber}>{ `${index + 1}.` }</div>
+             <Scroll
+               to={tableOfContent.targetTableOfContentID}
+               smooth
+               duration={500}
+             >{ tableOfContent.heading }</Scroll>
+           </li>
+
+         ))}
+       </ul>
+
     </div>
   );
 });
