@@ -112,11 +112,11 @@ export default BlogDetailsPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
 
-  const blogData: BlogResponseData = await getBlogs({ limit: 100, offset: 0 });
+  const blogData: BlogResponseData = await getBlogs({});
 
   const paths = blogData.data.contents.map((content) => `/blog/${content.id}`);
 
-return { paths, fallback: false};
+  return { paths, fallback: false};
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {

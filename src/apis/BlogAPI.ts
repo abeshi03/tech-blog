@@ -10,14 +10,14 @@ import { X_API_KEY } from "../constants/apis";
 
 
 // - ブログ一覧取得 ======================================================================================================
-export async function getBlogs({ limit, offset }: { limit: number; offset: number; }): Promise<BlogResponseData> {
+export async function getBlogs({ limit, offset }: { limit?: number; offset?: number; }): Promise<BlogResponseData> {
 
   try {
 
     const response: BlogResponseData = await axios.get(BLOG_END_POINT, {
       params: {
-        limit,
-        offset
+        limit: limit ? limit : 100,
+        offset: offset ? offset : 0
       },
       headers: { "X-API-KEY": X_API_KEY }
     });
