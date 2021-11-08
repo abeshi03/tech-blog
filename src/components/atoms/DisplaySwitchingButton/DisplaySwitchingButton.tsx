@@ -22,7 +22,7 @@ export const DisplaySwitchingButton: VFC<Props> = memo((props) => {
 
   const onClickDisplayChildren = (): void => {
     setDisplayChildren(!displayChildren);
-  }
+  };
 
   return (
     <div className={styles.displaySwitchingButton} onClick={onClickDisplayChildren} style={style}>

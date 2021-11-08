@@ -21,13 +21,13 @@ const BlogsListPage: VFC = (props) => {
     {
       label: Routing.Blog.List.pageName
     }
-  ]
+  ];
 
   return (
     <div className={styles.blogsListPage}>
       <Breadcrumb links={breadcrumbLinks}/>
     </div>
-  )
-}
+  );
+};
 
 export default BlogsListPage;
