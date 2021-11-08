@@ -12,6 +12,9 @@
   padding-top: 7px;
   padding-bottom: 20px;
 
+  color: #222222;
+  text-decoration: none;
+
   cursor: pointer;
 
 
@@ -48,29 +51,6 @@
 
     margin-top: 10px;
   }
-
-
-  .category {
-
-    @include EqualLeftAndRightPaddings(7px);
-    @include EqualTopAndBottomPaddings(10px);
-
-    background: $MAIN_COLOR_SKY_BLUE;
-    color: white;
-
-    border: 2px solid $MAIN_COLOR_SKY_BLUE;
-    border-radius: 5px;
-
-    font-size: 12px;
-  }
-
-
-  &:hover .category {
-
-    background: white;
-    color: #222222;
-  }
-
 
   .createdAt {
 

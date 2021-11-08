@@ -3,6 +3,7 @@
   font-size: 24px;
   font-weight: bold;
   letter-spacing: 1.25px;
+  line-height: 32px;
 
 
   &__underline {
@@ -33,4 +34,11 @@
   font-size: 21px;
   font-weight: bold;
   letter-spacing: 1.25px;
+
+
+  &__underline {
+
+    border-bottom: 1px solid #222222;
+    padding-bottom: 10px;
+  }
 }

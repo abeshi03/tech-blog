@@ -2,9 +2,11 @@
 import { VFC } from "react";
 import Head from "next/head";
 
-// - ルーティング ========================================================================================================
-import { Routing } from "../../routing/routing";
+// - アセット ===========================================================================================================
 import styles from "./500.module.scss";
+
+// - ルーティング ========================================================================================================
+import { pagesPath } from "../../lib/$path";
 
 // - 子コンポーネント =====================================================================================================
 import { AlertBox } from "../../components/atoms/AlertBox/AlertBox";
@@ -14,7 +16,7 @@ const InternalServerError: VFC = () => {
   return (
     <>
       <Head>
-        <title>{ Routing.InternalServerError.pageName }</title>
+        <title>ページが表示できません</title>
       </Head>
       <div className={styles.internalServerErrorPage}>
         <h1 className={styles.heading}>500 Internal Server Error</h1>
@@ -27,7 +29,7 @@ const InternalServerError: VFC = () => {
         <Button
           color="WHITE"
           size="BIG"
-          path={Routing.Top.path}
+          path={pagesPath.$url().pathname}
           style={{marginTop: "30px"}}
         >トップページへ戻る</Button>
       </div>

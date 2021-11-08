@@ -1,0 +1,67 @@
+@import "src/assets/styles/global/mixins/mixins";
+@import "src/assets/styles/global/valiables/valiables";
+
+
+.tableOfContents {
+
+  padding: 20px;
+
+  background: #FFFFFF;
+  box-shadow: 0 -3px 10px rgba(#123D52, 0.2);
+  border-radius: 30px;
+
+
+  .headingContainer {
+
+    display: flex;
+    column-gap: 10px;
+  }
+
+
+  .icon {
+
+    @include EqualWidthAndHeight(15px);
+
+    fill: $ACCENT_COLOR_PURPLE;
+  }
+
+  .heading {
+
+    font-size: 16px;
+    font-weight: bold;
+
+    margin-top: 2px;
+  }
+
+
+  .tableOfContentsFlow {
+
+    margin-top: 15px;
+  }
+
+
+  .tableOfContent {
+
+    display: flex;
+    column-gap: 8px;
+
+    font-size: 14px;
+    line-height: 22px;
+
+    margin-top: 10px;
+
+    cursor: pointer;
+
+
+    &:hover {
+
+      color: $MAIN_COLOR_SKY_BLUE;
+    }
+
+
+    &:active {
+
+      opacity: 0.5;
+    }
+  }
+}

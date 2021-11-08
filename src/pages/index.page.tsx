@@ -5,7 +5,7 @@ import { GetStaticProps } from "next";
 
 // - 型定義 =============================================================================================================
 import { Profile } from "../types/Profile/Profile";
-import { Blog, BlogResponseData } from "../types/Profile/Blog/Blog";
+import { Blog, BlogResponseData } from "../types/Blog/Blog";
 
 // - ルーティング ========================================================================================================
 import { Routing } from "../routing/routing";
@@ -117,12 +117,13 @@ export const getStaticProps: GetStaticProps = async () => {
   const nextJsCategoryID: string = "j6g1zbndl";
   const vueJsCategoryID: string = "n2tyyk-0u";
 
-  const [ myProfile, blogs, nextJsBlogs, vueJsBlogs ]: [ Profile, BlogResponseData, BlogResponseData, BlogResponseData ] = await Promise.all([
-    getMyProfile(),
-    getBlogs({ limit: 3 }),
-    getBlogsContainCategory({ limit: 3, categoryID: nextJsCategoryID }),
-    getBlogsContainCategory({ limit: 3, categoryID: vueJsCategoryID }),
-  ]);
+  const [ myProfile, blogs, nextJsBlogs, vueJsBlogs ]: [ Profile, BlogResponseData, BlogResponseData, BlogResponseData ] =
+    await Promise.all([
+      getMyProfile(),
+      getBlogs({ limit: 3, offset: 0 }),
+      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: nextJsCategoryID }),
+      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: vueJsCategoryID })
+    ]);
 
   return {
     props: {

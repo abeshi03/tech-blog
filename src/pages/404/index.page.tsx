@@ -5,7 +5,7 @@ import Head from "next/head";
 import styles from "./404.module.scss";
 
 // - ルーティング ========================================================================================================
-import { Routing } from "../../routing/routing";
+import { pagesPath } from "../../lib/$path";
 
 // - 子コンポーネント =====================================================================================================
 import { AlertBox } from "../../components/atoms/AlertBox/AlertBox";
@@ -17,7 +17,7 @@ const NotFound: VFC = () => {
   return (
     <>
       <Head>
-        <title>{ Routing.NotFound.pageName }</title>
+        <title>ページが見つかりません</title>
       </Head>
       <div className={styles.notFountPage}>
         <h1 className={styles.heading}>404 Not Found</h1>
@@ -30,7 +30,7 @@ const NotFound: VFC = () => {
         <Button
           color="WHITE"
           size="BIG"
-          path={Routing.Top.path}
+          path={pagesPath.$url().pathname}
           style={{marginTop: "30px"}}
         >トップページへ戻る</Button>
       </div>

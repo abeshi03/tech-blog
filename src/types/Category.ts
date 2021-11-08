@@ -6,3 +6,8 @@ export type Category = {
   revisedAt: string;
   name: string;
 }
+
+export type CategoryResponseData = {
+  contents: Category[];
+  totalCount: number;
+}

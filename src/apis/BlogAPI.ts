@@ -2,19 +2,22 @@
 import axios from "axios";
 
 // - 型定義 =============================================================================================================
-import { BlogResponseData } from "../types/Profile/Blog/Blog";
+import { Blog, BlogResponseData } from "../types/Blog/Blog";
 
 // - 定数 ===============================================================================================================
 import { BLOG_END_POINT } from "../constants/apis";
 import { X_API_KEY } from "../constants/apis";
 
-export async function getBlogs({ limit }: { limit: number; }): Promise<BlogResponseData> {
+
+// - ブログ一覧取得 ======================================================================================================
+export async function getBlogs({ limit, offset }: { limit?: number; offset?: number; }): Promise<BlogResponseData> {
 
   try {
 
     const response: BlogResponseData = await axios.get(BLOG_END_POINT, {
       params: {
-        limit
+        limit: limit ? limit : 100,
+        offset: offset ? offset : 0
       },
       headers: { "X-API-KEY": X_API_KEY }
     });
@@ -34,12 +37,15 @@ export async function getBlogs({ limit }: { limit: number; }): Promise<BlogRespo
   }
 }
 
+// - カテゴリー別ブログ一覧取得 ===========================================================================================
 export async function getBlogsContainCategory(
   {
     limit,
+    offset,
     categoryID
   }: {
     limit: number;
+    offset: number;
     categoryID: string;
   }
 ): Promise<BlogResponseData> {
@@ -66,5 +72,32 @@ export async function getBlogsContainCategory(
   } catch (error: unknown) {
     console.log(error);
     throw new Error("API ERROR: getBlogs");
+  }
+}
+
+
+// - ブログ記事データ取得 =================================================================================================
+export async function getBlogData(
+  {
+    id
+  }: {
+    id: string;
+  }
+): Promise<Blog> {
+
+  try {
+
+    const response = await axios.get<Blog>(BLOG_END_POINT + id, {
+      headers: { "X-API-KEY": X_API_KEY }
+    });
+
+    const blogData: Blog = response.data;
+
+    return blogData;
+
+  } catch (error: unknown) {
+
+    console.log(error);
+    throw new Error("API ERROR: getBlogData");
   }
 }

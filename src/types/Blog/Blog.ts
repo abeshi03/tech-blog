@@ -1,5 +1,5 @@
-import { Category } from "../../Category";
-import { ImageType } from "../../Image";
+import { Category } from "../Category";
+import { ImageType } from "../Image";
 
 export type Blog = {
   id: string;
@@ -8,7 +8,7 @@ export type Blog = {
   publishedAt: string;
   revisedAt: string;
   title: string;
-  blogContent__HTML: string;
+  blogContent: string;
   mainImage?: ImageType
   categories: Category[];
 }
