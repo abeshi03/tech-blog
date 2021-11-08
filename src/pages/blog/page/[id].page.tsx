@@ -5,11 +5,11 @@ import React, { VFC } from "react";
 import styles from "./blogsListPage.module.scss";
 
 // - 子コンポーネント =====================================================================================================
-import {Breadcrumb, BreadcrumbLink} from "../../components/atoms/Breadcrumb/Breadcrumb";
+import { Breadcrumb, BreadcrumbLink } from "../../../components/atoms/Breadcrumb/Breadcrumb";
 
 // - ルーティング ========================================================================================================
-import { pagesPath } from "../../lib/$path";
-import { Routing } from "../../routing/routing";
+import { pagesPath } from "../../../lib/$path";
+import { Routing } from "../../../routing/routing";
 
 const BlogsListPage: VFC = (props) => {
 
@@ -26,6 +26,9 @@ const BlogsListPage: VFC = (props) => {
   return (
     <div className={styles.blogsListPage}>
       <Breadcrumb links={breadcrumbLinks}/>
+      <div className={styles.mainSection}>
+        <h1>実装待機</h1>
+      </div>
     </div>
   );
 };

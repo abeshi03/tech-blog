@@ -8,7 +8,7 @@ import styles from "./breadcrumb.module.scss";
 
 export type BreadcrumbLink = {
   label: string;
-  path?: string;
+  path?: string | Object;
 }
 
 /* eslint-disable-next-line react/display-name */

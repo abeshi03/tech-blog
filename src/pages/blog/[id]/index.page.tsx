@@ -56,7 +56,7 @@ const BlogDetailsPage: VFC<Props> = (props) => {
       label: Routing.Top.pageName
     },
     {
-      path: pagesPath.blog.$url().pathname,
+      path: pagesPath.blog.page._id(1).$url(),
       label: Routing.Blog.List.pageName
     },
     {

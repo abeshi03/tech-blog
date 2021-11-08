@@ -9,6 +9,7 @@ import { Blog, BlogResponseData } from "../types/Blog/Blog";
 
 // - ルーティング ========================================================================================================
 import { Routing } from "../routing/routing";
+import { pagesPath } from "../lib/$path";
 
 // - アセット ===========================================================================================================
 import styles from "./top.module.scss";
@@ -34,7 +35,7 @@ type PostGroup = {
   id: number;
   heading: string;
   linkName: string;
-  path: string;
+  path: string | Object;
   posts: BlogResponseData;
 }
 
@@ -47,7 +48,7 @@ const Home: VFC<Props> = (props) => {
       id: 1,
       heading: "新着記事",
       linkName: "記事一覧",
-      path: "#",
+      path: pagesPath.blog.page._id(1).$url(),
       posts: blogs
     },
     {
