@@ -7,6 +7,7 @@ import styles from "./blogCard.module.scss";
 
 // - ルーディング ========================================================================================================
 import { Routing } from "../../../../routing/routing";
+import { pagesPath } from "../../../../lib/$path";
 
 // - 型定義 =============================================================================================================
 import { Blog } from "../../../../types/Blog/Blog";
@@ -36,7 +37,7 @@ export const BlogCard: VFC<Props> = memo((props) => {
   const { style, targetBlog } = props;
 
 return (
-  <Link href={Routing.Blog.Details.path.replace("[id]", targetBlog.id)}>
+  <Link href={pagesPath.blog._id(targetBlog.id).$url()}>
     <a className={styles.blogCard} style={style}>
       <div className={styles.image} style={{backgroundImage: `url(${targetBlog.mainImage.url})`}} role="img"></div>
 

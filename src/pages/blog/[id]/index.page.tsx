@@ -10,6 +10,7 @@ import styles from "./blogDetailsPage.module.scss";
 
 // - ルーティング ========================================================================================================
 import { Routing } from "../../../routing/routing";
+import { pagesPath } from "../../../lib/$path";
 
 // - api ===============================================================================================================
 import { getBlogData, getBlogs } from "../../../apis/BlogAPI";
@@ -51,11 +52,11 @@ const BlogDetailsPage: VFC<Props> = (props) => {
 
   const breadcrumbLinks: BreadcrumbLink[] = [
     {
-      path: Routing.Top.path,
+      path: pagesPath.$url().pathname,
       label: Routing.Top.pageName
     },
     {
-      path: Routing.Blog.List.path,
+      path: "#",
       label: Routing.Blog.List.pageName
     },
     {

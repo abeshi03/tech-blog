@@ -8,6 +8,7 @@ import styles from "./footer.module.scss";
 // - ルーティング =========================================================================================================
 import { Routing } from "../../../routing/routing";
 
+
 /* eslint-disable-next-line react/display-name */
 export const Footer: VFC = memo(() => {
   return (
