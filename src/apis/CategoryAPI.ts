@@ -8,22 +8,16 @@ import { CategoryResponseData } from "../types/Category";
 import { X_API_KEY } from "../constants/apis";
 import { CATEGORY_END_POINT } from "../constants/apis";
 
-export async function getCategories(): Promise<CategoryResponseData> {
+export async function getCategories() {
 
   try {
 
-    const response: CategoryResponseData = await axios.get(CATEGORY_END_POINT, {
+    const response = await axios.get<CategoryResponseData>(CATEGORY_END_POINT, {
       headers: { "X-API-KEY": X_API_KEY }
     });
 
-    const categoriesData: CategoryResponseData = {
-      data: {
-        contents: response.data.contents,
-        totalCount: response.data.totalCount
-      }
-    };
 
-    return categoriesData;
+    return response.data;
 
   } catch (error: unknown) {
 
