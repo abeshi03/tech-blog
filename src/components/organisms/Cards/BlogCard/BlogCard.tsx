@@ -1,6 +1,6 @@
 // - フレームワーク =======================================================================================================
 import React, { memo, VFC } from "react";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 // - アセット ============================================================================================================
 import styles from "./blogCard.module.scss";
@@ -34,14 +34,10 @@ return `${date.getFullYear()}/` +
 export const BlogCard: VFC<Props> = memo((props) => {
 
   const { style, targetBlog } = props;
-  const router = useRouter();
-
-  const onClickBlogDetailsPage = (): void => {
-    router.push(Routing.Blog.Details.path.replace("[id]", targetBlog.id));
-  };
 
 return (
-    <div className={styles.blogCard} style={style} onClick={onClickBlogDetailsPage}>
+  <Link href={Routing.Blog.Details.path.replace("[id]", targetBlog.id)}>
+    <a className={styles.blogCard} style={style}>
       <div className={styles.image} style={{backgroundImage: `url(${targetBlog.mainImage.url})`}} role="img"></div>
 
       <div className={styles.categoriesFlow}>
@@ -52,6 +48,7 @@ return (
 
       <div className={styles.createdAt}>{ formattedCreatedAt(targetBlog.createdAt) }</div>
       <div className={styles.blogTitle}>{ targetBlog.title }</div>
-    </div>
+    </a>
+  </Link>
   );
 });
