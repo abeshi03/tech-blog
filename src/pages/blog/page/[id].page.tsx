@@ -50,7 +50,7 @@ const BlogsListPage: VFC<Props> = (props) => {
     <div className={styles.blogsListPage}>
       <Breadcrumb links={breadcrumbLinks}/>
       <div className={styles.mainSection}>
-        <h1 className="heading1 heading1__underline">記事一覧</h1>
+        <h1 className={`${styles.heading} ${"heading1"} ${"heading1__underline"}`}>記事一覧</h1>
 
         <DisplaySwitchingButton
           label="カテゴリー"

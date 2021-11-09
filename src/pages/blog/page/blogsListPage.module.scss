@@ -40,6 +40,8 @@
    }
   }
 
+  background: $BASE_COLOR_BLUE_GRAY;
+
 
   .mainSection {
 
@@ -50,5 +52,11 @@
     @include MediumAndSmallScreen() {
       @include EqualLeftAndRightPaddings(5%);
     }
+  }
+
+
+  .heading {
+
+    margin-top: 20px;
   }
 }
