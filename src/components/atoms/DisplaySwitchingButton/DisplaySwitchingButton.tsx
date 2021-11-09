@@ -25,28 +25,29 @@ export const DisplaySwitchingButton: VFC<Props> = memo((props) => {
   };
 
   return (
-    <div className={styles.displaySwitchingButton} onClick={onClickDisplayChildren} style={style}>
+    <>
+      <div className={styles.displaySwitchingButton} onClick={onClickDisplayChildren} style={style}>
 
-      { displayChildren ? (
-        <div className={styles.flexContainer}>
-          <div className={styles.label}>{ `${label}を非表示` }</div>
-          <div className={styles.icon}>
-            <MinusIcon/>
+        { displayChildren ? (
+          <div className={styles.flexContainer}>
+            <div className={styles.label}>{ `${label}を非表示` }</div>
+            <div className={styles.icon}>
+              <MinusIcon/>
+            </div>
           </div>
-        </div>
 
-      ) : (
+        ) : (
 
-        <div className={styles.flexContainer}>
-          <div className={styles.label}>{ `${label}を表示` }</div>
-          <div className={styles.icon}>
-            <PlusIcon/>
+          <div className={styles.flexContainer}>
+            <div className={styles.label}>{ `${label}を表示` }</div>
+            <div className={styles.icon}>
+              <PlusIcon/>
+            </div>
           </div>
-        </div>
 
-      )}
-
+        )}
+      </div>
       { displayChildren && <div>{ children }</div> }
-    </div>
+    </>
   );
 });
