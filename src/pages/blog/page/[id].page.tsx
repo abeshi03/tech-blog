@@ -7,20 +7,22 @@ import styles from "./blogsListPage.module.scss";
 
 // - API =============================================================================================================
 import { getCategories } from "../../../apis/CategoryAPI";
-import { BlogResponseData } from "../../../types/Blog/Blog";
 import { getBlogs } from "../../../apis/BlogAPI";
 
 // - 子コンポーネント =====================================================================================================
 import { Breadcrumb, BreadcrumbLink } from "../../../components/atoms/Breadcrumb/Breadcrumb";
 import { DisplaySwitchingButton } from "../../../components/atoms/DisplaySwitchingButton/DisplaySwitchingButton";
 import { CategoriesBadgeFlow } from "../../../components/molecules/CategoriesBadgeFlow/CategoriesBadgeFlow";
+import { Pagination } from "../../../components/atoms/Pagination/Pagination";
+import { BlogCard } from "../../../components/organisms/Cards/BlogCard/BlogCard";
 
 // - ルーティング ========================================================================================================
 import { pagesPath } from "../../../lib/$path";
 import { Routing } from "../../../routing/routing";
 
 // - 型定義 =============================================================================================================
-import { Category, CategoryResponseData } from "../../../types/Category";
+import { CategoryResponseData } from "../../../types/Category";
+import { Blog, BlogResponseData } from "../../../types/Blog/Blog";
 
 
 type Props = {
@@ -33,8 +35,6 @@ const PER_PAGE = 5;
 const BlogsListPage: VFC<Props> = (props) => {
 
   const { blogs, categories } = props;
-
-  console.log(blogs)
 
   const breadcrumbLinks: BreadcrumbLink[] = [
     {
@@ -62,6 +62,13 @@ const BlogsListPage: VFC<Props> = (props) => {
           />
         </DisplaySwitchingButton>
 
+        <div className={styles.blogCardsFlow}>
+          {blogs.data.contents.map((blog: Blog) => (
+            <BlogCard targetBlog={blog} key={blog.id}/>
+          ))}
+        </div>
+        <Pagination totalCount={blogs.data.totalCount} perPageNumber={PER_PAGE}/>
+
       </div>
     </div>
   );
@@ -74,12 +81,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const pageNumbers: number[] = [];
 
   const pageRangeNumber = (start: number, end: number): number[] =>
-    [...Array(end - start + 1)].map((_, index: number) => start + index)
+    [...Array(end - start + 1)].map((_, index: number) => start + index);
 
-  const paths: string[] = pageRangeNumber(1, Math.ceil(blogData.data.totalCount / PER_PAGE)).map((pageID: number) =>  `/blog/page/${pageID}`)
+  const paths: string[] = pageRangeNumber(1, Math.ceil(blogData.data.totalCount / PER_PAGE)).map((pageID: number) =>  `/blog/page/${pageID}`);
 
   return { paths, fallback: false };
-}
+};
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const id: number = Number(context.params.id);
@@ -89,12 +96,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
     await Promise.all([
       getBlogs({ limit: 5, offset }),
       getCategories()
-    ])
+    ]);
 
   return {
     props: {
       blogs: blogsData,
       categories
     }
-  }
-}
+  };
+};

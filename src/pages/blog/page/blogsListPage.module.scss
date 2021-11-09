@@ -59,4 +59,26 @@
 
     margin-top: 20px;
   }
+
+
+  .blogCardsFlow {
+
+    display: grid;
+
+    margin-top: 35px;
+
+
+    @include WideAndMediumScreen {
+
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 35px 20px;
+    }
+
+
+    @include SmallScreen {
+
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+  }
 }
