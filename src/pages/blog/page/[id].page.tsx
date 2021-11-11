@@ -37,7 +37,7 @@ const BlogsListPage: VFC<Props> = (props) => {
 
   const { blogs, categories } = props;
 
-  const router = useRouter()
+  const router = useRouter();
 
   const currentPageNumber: number = Number(Object.values(router.query));
 

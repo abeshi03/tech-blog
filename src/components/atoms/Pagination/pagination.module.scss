@@ -1,0 +1,63 @@
+@import "src/assets/styles/global/mixins/mixins";
+@import "src/assets/styles/global/valiables/valiables";
+
+.pagination {
+
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 10px;
+
+  .toFirstPageButton, .toPreviousPageButton, .ToNextPageButton, .ToLastPageButton {
+
+    padding: 10px;
+
+    color: $ACCENT_COLOR_PURPLE;
+    text-decoration: none;
+
+
+    border-radius: 10px;
+    border: 1px solid transparent;
+
+
+    &:hover {
+
+      border: 1px solid $MAIN_COLOR_SKY_BLUE;
+      background: $MAIN_COLOR_SKY_BLUE;
+      color: #FFFFFF;
+    }
+  }
+
+
+  .PageNumberButton {
+
+    padding: 10px;
+    color: $ACCENT_COLOR_PURPLE;
+    text-decoration: none;
+
+    border-radius: 10px;
+    border: 1px solid transparent;
+
+
+    &:hover {
+
+      border: 1px solid $MAIN_COLOR_SKY_BLUE;
+      background: $MAIN_COLOR_SKY_BLUE;
+      color: #FFFFFF;
+    }
+  }
+
+
+  .currentPageNumber {
+
+    padding: 10px;
+
+    color: #FFFFFF;
+    background: $MAIN_COLOR_SKY_BLUE;
+
+    border-radius: 10px;
+    border: 1px solid $MAIN_COLOR_SKY_BLUE;
+
+    text-decoration: none;
+  }
+}
