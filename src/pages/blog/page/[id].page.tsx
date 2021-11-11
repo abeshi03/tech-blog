@@ -1,6 +1,7 @@
 // - フレームワーク, ライブラリー ===========================================================================================
 import React, { VFC } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
+import { useRouter } from "next/router";
 
 // - アセット ============================================================================================================
 import styles from "./blogsListPage.module.scss";
@@ -30,11 +31,15 @@ type Props = {
   categories: CategoryResponseData;
 }
 
-const PER_PAGE = 5;
+const PER_PAGE = 1;
 
 const BlogsListPage: VFC<Props> = (props) => {
 
   const { blogs, categories } = props;
+
+  const router = useRouter()
+
+  const currentPageNumber: number = Number(Object.values(router.query));
 
   const breadcrumbLinks: BreadcrumbLink[] = [
     {
@@ -67,7 +72,11 @@ const BlogsListPage: VFC<Props> = (props) => {
             <BlogCard targetBlog={blog} key={blog.id}/>
           ))}
         </div>
-        <Pagination totalCount={blogs.data.totalCount} perPageNumber={PER_PAGE}/>
+        <Pagination
+          totalCount={blogs.data.totalCount}
+          perPageNumber={PER_PAGE}
+          currentPageNumber={currentPageNumber}
+        />
 
       </div>
     </div>
@@ -90,11 +99,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const id: number = Number(context.params.id);
-  const offset: number = (id - 1) * 5;
+  const offset: number = (id - 1) * PER_PAGE;
 
   const [ blogsData, categories ]: [ BlogResponseData, CategoryResponseData ] =
     await Promise.all([
-      getBlogs({ limit: 5, offset }),
+      getBlogs({ limit: PER_PAGE, offset }),
       getCategories()
     ]);
 
