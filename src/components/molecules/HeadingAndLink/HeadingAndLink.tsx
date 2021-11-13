@@ -9,7 +9,7 @@ import styles from "./headingAndLink.module.scss";
 type Props = {
   heading: string;
   linkName: string;
-  path: string;
+  path: string | Object;
   style?: React.CSSProperties;
 }
 

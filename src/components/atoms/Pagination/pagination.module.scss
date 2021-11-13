@@ -1,0 +1,97 @@
+@import "src/assets/styles/global/mixins/mixins";
+@import "src/assets/styles/global/valiables/valiables";
+
+.pagination {
+
+
+  $MEDIUM_SCREENS__MINIMAL_WIDTH: 520px;
+
+  @mixin WideScreen() {
+   @media screen and (min-width: $wideScreen) {
+     @content
+   }
+  }
+
+  @mixin SmallScreen() {
+   @media screen and (max-width: $MEDIUM_SCREENS__MINIMAL_WIDTH - 1) {
+     @content
+   }
+  }
+
+
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 10px;
+
+  .toFirstPageButton, .toPreviousPageButton, .toNextPageButton, .toLastPageButton {
+
+    padding: 10px;
+
+    color: $ACCENT_COLOR_PURPLE;
+    text-decoration: none;
+
+
+    border-radius: 10px;
+    border: 1px solid transparent;
+
+
+    &:hover {
+
+      border: 1px solid $MAIN_COLOR_SKY_BLUE;
+      background: $MAIN_COLOR_SKY_BLUE;
+      color: #FFFFFF;
+    }
+
+
+    &:active {
+
+      opacity: 0.6;
+    }
+
+
+    @include SmallScreen {
+
+      display: none;
+    }
+  }
+
+
+  .PageNumberButton {
+
+    padding: 10px;
+    color: $ACCENT_COLOR_PURPLE;
+    text-decoration: none;
+
+    border-radius: 10px;
+    border: 1px solid transparent;
+
+
+    &:hover {
+
+      border: 1px solid $MAIN_COLOR_SKY_BLUE;
+      background: $MAIN_COLOR_SKY_BLUE;
+      color: #FFFFFF;
+    }
+
+
+    &:active {
+
+      opacity: 0.6;
+    }
+  }
+
+
+  .currentPageNumber {
+
+    padding: 10px;
+
+    color: #FFFFFF;
+    background: $MAIN_COLOR_SKY_BLUE;
+
+    border-radius: 10px;
+    border: 1px solid $MAIN_COLOR_SKY_BLUE;
+
+    text-decoration: none;
+  }
+}
