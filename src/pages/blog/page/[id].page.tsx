@@ -42,7 +42,7 @@ const BlogsListPage: VFC<Props> = (props) => {
 
   const router = useRouter();
 
-  const currentPageNumber: number = Number(Object.values(router.query));
+  const currentPageNumber: number = parseInt(router.query.id as string, 10);
 
   const breadcrumbLinks: BreadcrumbLink[] = [
     {
