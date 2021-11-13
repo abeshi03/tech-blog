@@ -95,7 +95,7 @@ export const Pagination: VFC<Props> = memo((props) => {
             <Link href={pagesPath.blog.page._id(currentPageNumber + 1).$url()}>
               <a
                 role="button"
-                className={styles.ToNextPageButton}
+                className={styles.toNextPageButton}
               >{ "> 次" }</a>
             </Link>
           }
@@ -104,7 +104,7 @@ export const Pagination: VFC<Props> = memo((props) => {
             <Link href={pagesPath.blog.page._id(totalPageCount).$url()}>
               <a
                 role="button"
-                className={styles.ToLastPageButton}
+                className={styles.toLastPageButton}
               >{ ">> 最後" }</a>
             </Link>
           }

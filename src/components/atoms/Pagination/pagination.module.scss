@@ -3,12 +3,28 @@
 
 .pagination {
 
+
+  $MEDIUM_SCREENS__MINIMAL_WIDTH: 520px;
+
+  @mixin WideScreen() {
+   @media screen and (min-width: $wideScreen) {
+     @content
+   }
+  }
+
+  @mixin SmallScreen() {
+   @media screen and (max-width: $MEDIUM_SCREENS__MINIMAL_WIDTH - 1) {
+     @content
+   }
+  }
+
+
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
   column-gap: 10px;
 
-  .toFirstPageButton, .toPreviousPageButton, .ToNextPageButton, .ToLastPageButton {
+  .toFirstPageButton, .toPreviousPageButton, .toNextPageButton, .toLastPageButton {
 
     padding: 10px;
 
@@ -25,6 +41,12 @@
       border: 1px solid $MAIN_COLOR_SKY_BLUE;
       background: $MAIN_COLOR_SKY_BLUE;
       color: #FFFFFF;
+    }
+
+
+    @include SmallScreen {
+
+      display: none;
     }
   }
 
