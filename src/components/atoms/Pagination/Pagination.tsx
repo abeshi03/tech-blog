@@ -12,12 +12,13 @@ type Props = {
   totalCount: number;
   currentPageNumber: number;
   perPageNumber: number;
+  style?: React.CSSProperties;
 }
 
 /* eslint-disable-next-line react/display-name */
 export const Pagination: VFC<Props> = memo((props) => {
 
-  const { totalCount, perPageNumber, currentPageNumber } = props;
+  const { totalCount, perPageNumber, currentPageNumber, style } = props;
 
   const NUMBERED_BUTTONS_COUNT__MUST_BE_ODD: number = 2;
 
@@ -34,7 +35,7 @@ export const Pagination: VFC<Props> = memo((props) => {
   return (
     <>
       { totalPageCount > 1 &&
-        <nav className={styles.pagination}>
+        <nav className={styles.pagination} style={style}>
 
           { mustDisplayGoToFirstPageButton() &&
             <Link href={pagesPath.blog.page._id(1).$url()}>
