@@ -80,5 +80,22 @@
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 20px;
     }
+
+
+    &:last-child {
+
+      padding-bottom: 90px;
+    }
+  }
+
+
+  .pagination {
+
+    margin-top: 60px;
+    padding-bottom: 90px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }

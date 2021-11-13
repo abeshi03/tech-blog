@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 // - アセット ============================================================================================================
 import styles from "./blogsListPage.module.scss";
 
-// - API =============================================================================================================
+// - API ===============================================================================================================
 import { getCategories } from "../../../apis/CategoryAPI";
 import { getBlogs } from "../../../apis/BlogAPI";
 
@@ -16,10 +16,14 @@ import { DisplaySwitchingButton } from "../../../components/atoms/DisplaySwitchi
 import { CategoriesBadgeFlow } from "../../../components/molecules/CategoriesBadgeFlow/CategoriesBadgeFlow";
 import { Pagination } from "../../../components/atoms/Pagination/Pagination";
 import { BlogCard } from "../../../components/organisms/Cards/BlogCard/BlogCard";
+import { PaginatedItemsRangeDisplaying } from "../../../components/molecules/PaginatedItemsRangeDisplaying/PaginatedItemsRangeDisplaying";
 
 // - ルーティング ========================================================================================================
 import { pagesPath } from "../../../lib/$path";
 import { Routing } from "../../../routing/routing";
+
+// - 定数 ===============================================================================================================
+import { BLOG_PER_PAGE } from "../../../constants/BlogPageSettings";
 
 // - 型定義 =============================================================================================================
 import { CategoryResponseData } from "../../../types/Category";
@@ -31,7 +35,6 @@ type Props = {
   categories: CategoryResponseData;
 }
 
-const PER_PAGE = 1;
 
 const BlogsListPage: VFC<Props> = (props) => {
 
@@ -67,16 +70,26 @@ const BlogsListPage: VFC<Props> = (props) => {
           />
         </DisplaySwitchingButton>
 
+        <PaginatedItemsRangeDisplaying
+          totalCount={blogs.data.totalCount}
+          perPageNumber={BLOG_PER_PAGE}
+          currentPageNumber={currentPageNumber}
+          style={{marginTop: "20px"}}
+        />
+
         <div className={styles.blogCardsFlow}>
           {blogs.data.contents.map((blog: Blog) => (
             <BlogCard targetBlog={blog} key={blog.id}/>
           ))}
         </div>
-        <Pagination
-          totalCount={blogs.data.totalCount}
-          perPageNumber={PER_PAGE}
-          currentPageNumber={currentPageNumber}
-        />
+
+        <div className={styles.pagination}>
+          <Pagination
+            totalCount={blogs.data.totalCount}
+            perPageNumber={BLOG_PER_PAGE}
+            currentPageNumber={currentPageNumber}
+          />
+        </div>
 
       </div>
     </div>
@@ -87,23 +100,23 @@ export default BlogsListPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const blogData = await getBlogs({});
-  const pageNumbers: number[] = [];
 
   const pageRangeNumber = (start: number, end: number): number[] =>
     [...Array(end - start + 1)].map((_, index: number) => start + index);
 
-  const paths: string[] = pageRangeNumber(1, Math.ceil(blogData.data.totalCount / PER_PAGE)).map((pageID: number) =>  `/blog/page/${pageID}`);
+  const paths: string[] =
+    pageRangeNumber(1, Math.ceil(blogData.data.totalCount / BLOG_PER_PAGE)).map((pageID: number) => `/blog/page/${pageID}`);
 
   return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const id: number = Number(context.params.id);
-  const offset: number = (id - 1) * PER_PAGE;
+  const offset: number = (id - 1) * BLOG_PER_PAGE;
 
   const [ blogsData, categories ]: [ BlogResponseData, CategoryResponseData ] =
     await Promise.all([
-      getBlogs({ limit: PER_PAGE, offset }),
+      getBlogs({ limit: BLOG_PER_PAGE, offset }),
       getCategories()
     ]);
 
