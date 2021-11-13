@@ -44,6 +44,12 @@
     }
 
 
+    &:active {
+
+      opacity: 0.6;
+    }
+
+
     @include SmallScreen {
 
       display: none;
@@ -66,6 +72,12 @@
       border: 1px solid $MAIN_COLOR_SKY_BLUE;
       background: $MAIN_COLOR_SKY_BLUE;
       color: #FFFFFF;
+    }
+
+
+    &:active {
+
+      opacity: 0.6;
     }
   }
 

@@ -34,9 +34,9 @@ const getPaginatedItemsRangeDisplaying = (
   }
 
   // - 通常の表示 ========================================================================================================
-  return `${totalCount}件中 ${displayFirstRangeNumber} ~ ${displayLastRangeNumber}を表示`
+  return `${totalCount}件中 ${displayFirstRangeNumber} ~ ${displayLastRangeNumber}を表示`;
 
-}
+};
 
 /* eslint-disable-next-line react/display-name */
 export const PaginatedItemsRangeDisplaying: VFC<Props> = memo((props) => {
