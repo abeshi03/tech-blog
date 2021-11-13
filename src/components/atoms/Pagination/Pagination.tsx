@@ -21,6 +21,7 @@ export const Pagination: VFC<Props> = memo((props) => {
   const { totalCount, perPageNumber, currentPageNumber, style } = props;
 
   const NUMBERED_BUTTONS_COUNT__MUST_BE_ODD: number = 2;
+  const totalPageCount = Math.ceil(totalCount / perPageNumber);
 
   const mustDisplayGoToFirstPageButton = (): boolean => {
     return currentPageNumber - (0.5 * (NUMBERED_BUTTONS_COUNT__MUST_BE_ODD - 1)) > 1;
@@ -30,7 +31,6 @@ export const Pagination: VFC<Props> = memo((props) => {
     return currentPageNumber < totalPageCount - (0.5 * (NUMBERED_BUTTONS_COUNT__MUST_BE_ODD - 1));
   };
 
-  const totalPageCount = Math.ceil(totalCount / perPageNumber);
 
   return (
     <>
