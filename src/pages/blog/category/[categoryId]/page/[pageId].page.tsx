@@ -47,11 +47,11 @@ const BlogsCategoryListPage: VFC<Props> = (props) => {
   // - 見出し ===========================================================================================================
   const currentPageCategoryID: string = router.query.categoryId as string;
   const currentPageCategory: Category[] = categories.contents.filter((category: Category): boolean => {
-    return category.id === currentPageCategoryID
+    return category.id === currentPageCategoryID;
   });
   const currentPageCategoryName: string = currentPageCategory[0].name;
 
-  const heading: string = `"${currentPageCategoryName}"の記事`
+  const heading: string = `"${currentPageCategoryName}"の記事`;
 
   // - パンクズ ==========================================================================================================
   const breadcrumbLinks: BreadcrumbLink[] = [
@@ -108,7 +108,7 @@ const BlogsCategoryListPage: VFC<Props> = (props) => {
       </div>
     </div>
   );
-}
+};
 
 export default BlogsCategoryListPage;
 
@@ -120,14 +120,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const pageRangeNumber = (start: number, end: number): number[] =>
     [...Array(end - start + 1)].map((_, index: number) => start + index);
 
-  const paths: string[] = []
+  const paths: string[] = [];
 
   categoryData.contents.map((category: Category) => {
     return pageRangeNumber(1, Math.ceil(blogData.data.totalCount / BLOG_PER_PAGE)).map((pageID: number) =>
       paths.push(`/blog/category/${category.id}/page/${pageID}`));
-  })
+  });
 
-  return { paths, fallback: false }
+  return { paths, fallback: false };
 };
 
 
@@ -141,13 +141,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
     await Promise.all([
       getBlogsContainCategory({ limit: BLOG_PER_PAGE, offset, categoryID }),
       getCategories()
-    ])
+    ]);
 
   return {
     props: {
       blogs: blogsData,
       categories
     }
-  }
-}
+  };
+};
 
