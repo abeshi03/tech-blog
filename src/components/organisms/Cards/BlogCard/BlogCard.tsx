@@ -43,7 +43,7 @@ return (
 
       <div className={styles.categoriesFlow}>
         {targetBlog.categories.map((category: Category) => (
-          <CategoryBadge key={category.id} category={category}/>
+          <CategoryBadge notOnClick key={category.id} category={category}/>
         ))}
       </div>
 

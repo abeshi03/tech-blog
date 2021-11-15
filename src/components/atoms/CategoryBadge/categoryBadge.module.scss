@@ -13,4 +13,30 @@
   border-radius: 5px;
 
   font-size: 12px;
+
+  text-decoration: none;
+
+
+  &__linkStyle {
+
+    &:hover {
+
+      color: $MAIN_COLOR_SKY_BLUE;
+      background: #FFFFFF;
+    }
+
+
+    &:active {
+
+      opacity: 0.6;
+    }
+
+
+    &:focus {
+
+      color: $MAIN_COLOR_SKY_BLUE;
+      background: #FFFFFF;
+    }
+  }
+
 }
