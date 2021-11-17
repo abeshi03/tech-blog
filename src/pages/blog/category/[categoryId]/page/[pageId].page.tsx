@@ -23,6 +23,9 @@ import { pagesPath } from "../../../../../lib/$path";
 // - 定数 ===============================================================================================================
 import { BLOG_PER_PAGE } from "../../../../../constants/BlogPageSettings";
 
+// - 補助 ===============================================================================================================
+import isNotUndefined from "../../../../../utility/typeGuards/nullables/isNotUndefined";
+
 
 type Props = {
   blogs: BlogResponseData;
@@ -40,12 +43,12 @@ const BlogsCategoryListPage: VFC<Props> = (props) => {
 
   // - 見出し ===========================================================================================================
   const currentPageCategoryID: string = router.query.categoryId as string;
-  const currentPageCategory: Category[] = categories.contents.filter((category: Category): boolean => {
+  const currentPageCategory: Category | undefined = categories.contents.find((category: Category): boolean => {
     return category.id === currentPageCategoryID;
   });
-  const currentPageCategoryName: string = currentPageCategory[0].name;
+  const currentPageCategoryName: string = currentPageCategory?.name
 
-  const heading: string = `"${currentPageCategoryName}"の記事`;
+  const heading: string = isNotUndefined(currentPageCategoryName) ? `"${currentPageCategoryName}"の記事` : "記事一覧";
 
   // - パンクズ ==========================================================================================================
   const breadcrumbLinks: BreadcrumbLink[] = [
