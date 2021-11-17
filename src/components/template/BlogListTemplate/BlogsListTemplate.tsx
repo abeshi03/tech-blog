@@ -52,16 +52,22 @@ export const BlogsListTemplate: VFC<Props> = memo((props) => {
           />
         </DisplaySwitchingButton>
 
+        { isFilteringReset &&
+          <div className={styles.buttonContainer}>
+            <Button
+              color="WHITE"
+              size="BIG"
+              path={pagesPath.blog.page._id(1).$url()}
+            >絞り込みリセット</Button>
+          </div>
+        }
+
         <PaginatedItemsRangeDisplaying
           totalCount={blogs.data.totalCount}
           perPageNumber={perPage}
           currentPageNumber={currentPageNumber}
           style={{marginTop: "20px"}}
         />
-
-        { isFilteringReset &&
-          <Button color="SKY_BLUE" size="BIG" path={pagesPath.blog.page._id(1).$url()}>絞り込みリセット</Button>
-        }
 
         <div className={styles.blogCardsFlow}>
           {blogs.data.contents.map((blog: Blog) => (
