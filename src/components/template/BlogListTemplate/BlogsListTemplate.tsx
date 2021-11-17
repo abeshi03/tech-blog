@@ -11,6 +11,10 @@ import { CategoriesBadgeFlow } from "../../molecules/CategoriesBadgeFlow/Categor
 import { PaginatedItemsRangeDisplaying } from "../../molecules/PaginatedItemsRangeDisplaying/PaginatedItemsRangeDisplaying";
 import { BlogCard } from "../../organisms/Cards/BlogCard/BlogCard";
 import { Pagination } from "../../atoms/Pagination/Pagination";
+import { Button } from "../../atoms/Button/Button";
+
+// - ルーティング ========================================================================================================
+import { pagesPath } from "../../../lib/$path";
 
 // - 型定義 =============================================================================================================
 import { CategoryResponseData } from "../../../types/Category";
@@ -24,12 +28,13 @@ type Props = {
   blogs: BlogResponseData;
   currentPageNumber: number;
   heading: string;
+  isFilteringReset?: boolean;
 }
 
 /* eslint-disable-next-line react/display-name */
 export const BlogsListTemplate: VFC<Props> = memo((props) => {
 
-  const { breadcrumbLinks, categories, perPage, blogs, currentPageNumber, heading } = props;
+  const { breadcrumbLinks, categories, perPage, blogs, currentPageNumber, heading, isFilteringReset = false } = props;
 
   return (
     <div className={styles.blogsListTemplate}>
@@ -53,6 +58,10 @@ export const BlogsListTemplate: VFC<Props> = memo((props) => {
           currentPageNumber={currentPageNumber}
           style={{marginTop: "20px"}}
         />
+
+        { isFilteringReset &&
+          <Button color="SKY_BLUE" size="BIG" path={pagesPath.blog.page._id(1).$url()}>絞り込みリセット</Button>
+        }
 
         <div className={styles.blogCardsFlow}>
           {blogs.data.contents.map((blog: Blog) => (

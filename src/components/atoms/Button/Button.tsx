@@ -5,12 +5,13 @@ import Link from "next/link";
 // - アセット ============================================================================================================
 import styles from "./button.module.scss";
 
-// - ルーティング =========================================================================================================
+// - 型定義 =============================================================================================================
+import { UrlObject } from "url";
 
 type Props = {
   color: "SKY_BLUE" | "WHITE";
   size: "SMALL" | "BIG";
-  path: string;
+  path: string | UrlObject;
   children: ReactNode;
   style?: React.CSSProperties;
 }

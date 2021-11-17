@@ -70,6 +70,7 @@ const BlogsCategoryListPage: VFC<Props> = (props) => {
       perPage={BLOG_PER_PAGE}
       currentPageNumber={currentPageNumber}
       heading={heading}
+      isFilteringReset
     />
   );
 };
