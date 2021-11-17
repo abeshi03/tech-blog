@@ -3,20 +3,12 @@ import React, { VFC } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 
-// - アセット ============================================================================================================
-import styles from "./blogsListPage.module.scss";
-
 // - API ===============================================================================================================
 import { getCategories } from "../../../apis/CategoryAPI";
 import { getBlogs } from "../../../apis/BlogAPI";
 
 // - 子コンポーネント =====================================================================================================
-import { Breadcrumb, BreadcrumbLink } from "../../../components/atoms/Breadcrumb/Breadcrumb";
-import { DisplaySwitchingButton } from "../../../components/atoms/DisplaySwitchingButton/DisplaySwitchingButton";
-import { CategoriesBadgeFlow } from "../../../components/molecules/CategoriesBadgeFlow/CategoriesBadgeFlow";
-import { Pagination } from "../../../components/atoms/Pagination/Pagination";
-import { BlogCard } from "../../../components/organisms/Cards/BlogCard/BlogCard";
-import { PaginatedItemsRangeDisplaying } from "../../../components/molecules/PaginatedItemsRangeDisplaying/PaginatedItemsRangeDisplaying";
+import { BlogsListTemplate } from "../../../components/template/BlogListTemplate/BlogsListTemplate";
 
 // - ルーティング ========================================================================================================
 import { pagesPath } from "../../../lib/$path";
@@ -26,8 +18,9 @@ import { Routing } from "../../../routing/routing";
 import { BLOG_PER_PAGE } from "../../../constants/BlogPageSettings";
 
 // - 型定義 =============================================================================================================
+import { BreadcrumbLink } from "../../../components/atoms/Breadcrumb/Breadcrumb";
 import { CategoryResponseData } from "../../../types/Category";
-import { Blog, BlogResponseData } from "../../../types/Blog/Blog";
+import { BlogResponseData } from "../../../types/Blog/Blog";
 
 
 type Props = {
@@ -55,44 +48,14 @@ const BlogsListPage: VFC<Props> = (props) => {
   ];
 
   return (
-    <div className={styles.blogsListPage}>
-      <Breadcrumb links={breadcrumbLinks}/>
-      <div className={styles.mainSection}>
-        <h1 className={`${styles.heading} ${"heading1"} ${"heading1__underline"}`}>記事一覧</h1>
-
-        <DisplaySwitchingButton
-          label="カテゴリー"
-          style={{display: "flex", flexDirection: "column", alignItems: "flex-end", marginTop: "20px"}}
-        >
-          <CategoriesBadgeFlow
-            categories={categories.contents}
-            style={{ marginTop: "20px"}}
-          />
-        </DisplaySwitchingButton>
-
-        <PaginatedItemsRangeDisplaying
-          totalCount={blogs.data.totalCount}
-          perPageNumber={BLOG_PER_PAGE}
-          currentPageNumber={currentPageNumber}
-          style={{marginTop: "20px"}}
-        />
-
-        <div className={styles.blogCardsFlow}>
-          {blogs.data.contents.map((blog: Blog) => (
-            <BlogCard targetBlog={blog} key={blog.id}/>
-          ))}
-        </div>
-
-        <div className={styles.pagination}>
-          <Pagination
-            totalCount={blogs.data.totalCount}
-            perPageNumber={BLOG_PER_PAGE}
-            currentPageNumber={currentPageNumber}
-          />
-        </div>
-
-      </div>
-    </div>
+    <BlogsListTemplate
+      breadcrumbLinks={breadcrumbLinks}
+      categories={categories}
+      blogs={blogs}
+      perPage={BLOG_PER_PAGE}
+      currentPageNumber={currentPageNumber}
+      heading={"記事一覧"}
+    />
   );
 };
 

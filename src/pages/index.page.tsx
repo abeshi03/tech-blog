@@ -24,6 +24,10 @@ import { BlogCard } from "../components/organisms/Cards/BlogCard/BlogCard";
 import { ProfileCard } from "../components/organisms/Cards/ProfileCard/ProfileCard";
 import { HeadingAndLink } from "../components/molecules/HeadingAndLink/HeadingAndLink";
 
+// - 定数 ===============================================================================================================
+import { NEXT_JS_CATEGORY_ID } from "../constants/BlogPageSettings";
+import { VUE_JE_CATEGORY_ID } from "../constants/BlogPageSettings";
+
 type Props = {
   myProfile: Profile;
   blogs: BlogResponseData;
@@ -55,14 +59,14 @@ const Home: VFC<Props> = (props) => {
       id: 2,
       heading: "Next.js",
       linkName: "Next.jsの記事一覧",
-      path: "#",
+      path: pagesPath.blog.category._categoryId(NEXT_JS_CATEGORY_ID).page._pageId(1).$url(),
       posts: nextJsBlogs
     },
     {
       id: 3,
       heading: "Vue.js",
       linkName: "Vue.jsの記事一覧",
-      path: "#",
+      path: pagesPath.blog.category._categoryId(VUE_JE_CATEGORY_ID).page._pageId(1).$url(),
       posts: vueJsBlogs
     }
   ];
@@ -115,15 +119,12 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
 
-  const nextJsCategoryID: string = "j6g1zbndl";
-  const vueJsCategoryID: string = "n2tyyk-0u";
-
   const [ myProfile, blogs, nextJsBlogs, vueJsBlogs ]: [ Profile, BlogResponseData, BlogResponseData, BlogResponseData ] =
     await Promise.all([
       getMyProfile(),
       getBlogs({ limit: 3, offset: 0 }),
-      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: nextJsCategoryID }),
-      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: vueJsCategoryID })
+      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: NEXT_JS_CATEGORY_ID }),
+      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: VUE_JE_CATEGORY_ID })
     ]);
 
   return {
