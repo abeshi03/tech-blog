@@ -3,6 +3,9 @@ import React, { VFC } from "react";
 import Head from "next/head";
 import { GetStaticProps } from "next";
 
+// - メタデータ ==========================================================================================================
+import { MetaData } from "../components/MetaData";
+
 // - 型定義 =============================================================================================================
 import { Profile } from "../types/Profile/Profile";
 import { Blog, BlogResponseData } from "../types/Blog/Blog";
@@ -73,9 +76,12 @@ const Home: VFC<Props> = (props) => {
 
   return(
     <>
-      <Head>
-        <title>{ Routing.Top.pageName }</title>
-      </Head>
+      <MetaData
+        title={Routing.Top.pageName}
+        url="/"
+        type="website"
+        twitterCardType="summary_large_image"
+      />
       <main className={styles.topPage}>
         <div className={styles.mainSection}>
 

@@ -3,6 +3,8 @@ import React, { VFC } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 
+// - メタデータ ==========================================================================================================
+import { MetaData } from "../../../../../components/MetaData";
 
 // - API ===============================================================================================================
 import { getCategories } from "../../../../../apis/CategoryAPI";
@@ -46,9 +48,9 @@ const BlogsCategoryListPage: VFC<Props> = (props) => {
   const currentPageCategory: Category | undefined = categories.contents.find((category: Category): boolean => {
     return category.id === currentPageCategoryID;
   });
-  const currentPageCategoryName: string = currentPageCategory?.name
+  const currentPageCategoryName: string = currentPageCategory?.name;
 
-  const heading: string = isNotUndefined(currentPageCategoryName) ? `"${currentPageCategoryName}"の記事` : "記事一覧";
+  const heading: string = isNotUndefined(currentPageCategoryName) ? `"${currentPageCategoryName}"の記事一覧` : "記事一覧";
 
   // - パンクズ ==========================================================================================================
   const breadcrumbLinks: BreadcrumbLink[] = [
@@ -63,15 +65,24 @@ const BlogsCategoryListPage: VFC<Props> = (props) => {
 
 
   return (
-    <BlogsListTemplate
-      breadcrumbLinks={breadcrumbLinks}
-      categories={categories}
-      blogs={blogs}
-      perPage={BLOG_PER_PAGE}
-      currentPageNumber={currentPageNumber}
-      heading={heading}
-      isFilteringReset
-    />
+    <>
+      <MetaData
+        title={heading}
+        url={pagesPath.blog.category._categoryId(currentPageCategoryID).page._pageId(1).$url()}
+        type="article"
+        twitterCardType="summary_large_image"
+        description={`${currentPageCategoryName}の記事一覧ページです。`}
+      />
+      <BlogsListTemplate
+        breadcrumbLinks={breadcrumbLinks}
+        categories={categories}
+        blogs={blogs}
+        perPage={BLOG_PER_PAGE}
+        currentPageNumber={currentPageNumber}
+        heading={heading}
+        isFilteringReset
+      />
+    </>
   );
 };
 

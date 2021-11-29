@@ -3,6 +3,9 @@ import React, { VFC } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 
+// - メタデータ ==========================================================================================================
+import { MetaData } from "../../../components/MetaData";
+
 // - API ===============================================================================================================
 import { getCategories } from "../../../apis/CategoryAPI";
 import { getBlogs } from "../../../apis/BlogAPI";
@@ -48,14 +51,23 @@ const BlogsListPage: VFC<Props> = (props) => {
   ];
 
   return (
-    <BlogsListTemplate
-      breadcrumbLinks={breadcrumbLinks}
-      categories={categories}
-      blogs={blogs}
-      perPage={BLOG_PER_PAGE}
-      currentPageNumber={currentPageNumber}
-      heading={"記事一覧"}
-    />
+    <>
+      <MetaData
+        title={Routing.Blog.List.pageName}
+        url={pagesPath.blog.page._id(1).$url()}
+        type="article"
+        twitterCardType="summary_large_image"
+        description="ブログ記事一覧ページです。"
+      />
+      <BlogsListTemplate
+        breadcrumbLinks={breadcrumbLinks}
+        categories={categories}
+        blogs={blogs}
+        perPage={BLOG_PER_PAGE}
+        currentPageNumber={currentPageNumber}
+        heading={"記事一覧"}
+      />
+    </>
   );
 };
 

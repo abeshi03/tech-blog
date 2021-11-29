@@ -2,6 +2,9 @@
 import React, {memo, VFC} from "react";
 import Head from "next/head";
 
+// - 型定義 =======================================================================================================
+import { UrlObject } from "url";
+
 type OgType = "website" | "article"
 
 type TwitterCardType = "summary" | "summary_large_image"
@@ -9,9 +12,9 @@ type TwitterCardType = "summary" | "summary_large_image"
 type Props = {
   title: string;
   description?: string;
-  noDefaultDescription: boolean;
+  noDefaultDescription?: boolean;
   ogpImageURI?: string;
-  url: string;
+  url: string | UrlObject;
   type: OgType;
   twitterCardType: TwitterCardType
 }
@@ -32,18 +35,20 @@ export const MetaData: VFC<Props> = memo((props) => {
       <title>{metaTitle}</title>
       <meta name="description" content={noDefaultDescription ? description : formattedDescription} />
       // TODO ページのデフォルトURLが決まったら追記
-      <meta property="og:url" content={url} />
+      <meta property="og:url" content={url as string} />
       <meta property="og:title" content={metaTitle} />
       <meta property="og:type" content={type} />
       <meta property="og:description" content={noDefaultDescription ? description : formattedDescription} />
-      <meta property="og:image" content={ogpImageURI} />
+      // TODO 画像用意する
+      <meta property="og:image" content={ogpImageURI ?? "ダミー画像用意する"} />
       <meta property="og:site_name" content="abeshi blog" />
 
       {/* ツイッター ================================================================================================== */}
       <meta name="twitter:card" content={twitterCardType} />
       <meta name="twitter:title" content={metaTitle} />
       <meta name="twitter:description" content={noDefaultDescription ? description : formattedDescription} />
-      <meta name="twitter:image" content={ogpImageURI} />
+      // TODO 画像用意する
+      <meta name="twitter:image" content={ogpImageURI ?? "ダミー画像用意する"} />
     </Head>
   );
 });
