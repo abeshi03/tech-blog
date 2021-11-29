@@ -69,9 +69,10 @@ const BlogDetailsPage: VFC<Props> = (props) => {
 
 
   const metaDescription__100Characters = (): string => {
-    const metaDescription: string = blog.blogContent.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
-    return metaDescription.slice(0, 100);
-  }
+    const metaDescription: string = blog.blogContent.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,"");
+    
+return metaDescription.slice(0, 100);
+  };
 
   return (
     <>
