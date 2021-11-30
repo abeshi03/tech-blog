@@ -5,6 +5,9 @@ import cheerio from "cheerio";
 import hljs from "highlight.js";
 import "highlight.js/styles/shades-of-purple.css";
 
+// - メタデータ ==========================================================================================================
+import { MetaData } from "../../../components/MetaData";
+
 // - アセット ===========================================================================================================
 import styles from "./blogDetailsPage.module.scss";
 
@@ -64,50 +67,69 @@ const BlogDetailsPage: VFC<Props> = (props) => {
     }
   ];
 
+
+  const metaDescription__100Characters = (): string => {
+    const metaDescription: string = blog.blogContent.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,"");
+    
+return metaDescription.slice(0, 100);
+  };
+
   return (
-    <main className={styles.blogDetailsPage}>
-      <Breadcrumb links={breadcrumbLinks}/>
-      <div className={styles.mainSection}>
+    <>
+      <MetaData
+        title={blog.title}
+        url={pagesPath.blog._id(blog.id).$url()}
+        type="article"
+        twitterCardType="summary_large_image"
+        description={metaDescription__100Characters()}
+        noDefaultDescription
+        ogpImageURI={blog.mainImage.url}
+      />
+      <main className={styles.blogDetailsPage}>
+        <Breadcrumb links={breadcrumbLinks}/>
+        <div className={styles.mainSection}>
 
-        {/* ブログ記事 ===============================================================================================　*/}
-        <div className={styles.blogBlock}>
+          {/* ブログ記事 ===============================================================================================　*/}
+          <div className={styles.blogBlock}>
 
-          <h1 className="heading1">{ blog.title }</h1>
+            <h1 className="heading1">{ blog.title }</h1>
 
-          <div className={styles.publishedDate}>{ formattedPublishedDate(blog.publishedAt) }</div>
+            <div className={styles.publishedDate}>{ formattedPublishedDate(blog.publishedAt) }</div>
 
-          <div className={styles.categoriesFlow}>
-            {blog.categories.map((category: Category) => (
-              <CategoryBadge category={category} key={category.id}/>
-            ))}
+            <div className={styles.categoriesFlow}>
+              {blog.categories.map((category: Category) => (
+                <CategoryBadge category={category} key={category.id}/>
+              ))}
+            </div>
+
+            <div className={styles.blogContent}
+                 dangerouslySetInnerHTML={{
+                   __html: highlightedBody
+                 }}
+            />
+
           </div>
 
-          <div className={styles.blogContent}
-               dangerouslySetInnerHTML={{
-                 __html: highlightedBody
-               }}
-          />
+          {/* サイドバー ===============================================================================================　*/}
+          <div className={styles.sideBar}>
 
-        </div>
+            <div className={styles.TableOfContents}>
+              <TableOfContents tableOfContents={tableOfContents}/>
+            </div>
 
-        {/* サイドバー ===============================================================================================　*/}
-        <div className={styles.sideBar}>
+            <h3 className={styles.heading3}>カテゴリーで探す</h3>
+            <CategoriesBadgeFlow
+              categories={categories.contents}
+              style={{marginTop: "15px"}}
+            />
 
-          <div className={styles.TableOfContents}>
-            <TableOfContents tableOfContents={tableOfContents}/>
           </div>
-
-          <h3 className={styles.heading3}>カテゴリーで探す</h3>
-          <CategoriesBadgeFlow
-            categories={categories.contents}
-            style={{marginTop: "15px"}}
-          />
-
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
+
 
 export default BlogDetailsPage;
 
