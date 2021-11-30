@@ -3,8 +3,7 @@ import React, {memo, VFC} from "react";
 import Head from "next/head";
 
 // - 型定義 =======================================================================================================
-import { UrlObject } from "url";
-import { format } from "url";
+import { UrlObject, format } from "url";
 
 type OgType = "website" | "article"
 
