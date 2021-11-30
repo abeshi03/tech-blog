@@ -4,6 +4,7 @@ import Head from "next/head";
 
 // - 型定義 =======================================================================================================
 import { UrlObject } from "url";
+import { format } from "url";
 
 type OgType = "website" | "article"
 
@@ -30,15 +31,17 @@ export const MetaData: VFC<Props> = memo((props) => {
   const metaTitle = `${title}${DEFAULT_TITLE}`;
   const formattedDescription = description ? `${description}${DEFAULT_DESCRIPTION}` : DEFAULT_DESCRIPTION;
 
+  const isDisplayMetaDescription = noDefaultDescription ? description : formattedDescription;
+
   return (
     <Head>
       <title>{metaTitle}</title>
-      <meta name="description" content={noDefaultDescription ? description : formattedDescription} />
+      <meta name="description" content={isDisplayMetaDescription} />
       {/*TODO ページのデフォルトURLが決まったら追記*/}
-      <meta property="og:url" content={url as string} />
+      <meta property="og:url" content={format(url)} />
       <meta property="og:title" content={metaTitle} />
       <meta property="og:type" content={type} />
-      <meta property="og:description" content={noDefaultDescription ? description : formattedDescription} />
+      <meta property="og:description" content={isDisplayMetaDescription} />
       {/*TODO 画像用意する*/}
       <meta property="og:image" content={ogpImageURI ?? "ダミー画像用意する"} />
       <meta property="og:site_name" content="abeshi blog" />
@@ -46,7 +49,7 @@ export const MetaData: VFC<Props> = memo((props) => {
       {/* ツイッター ================================================================================================== */}
       <meta name="twitter:card" content={twitterCardType} />
       <meta name="twitter:title" content={metaTitle} />
-      <meta name="twitter:description" content={noDefaultDescription ? description : formattedDescription} />
+      <meta name="twitter:description" content={isDisplayMetaDescription} />
       {/*TODO 画像用意する*/}
       <meta name="twitter:image" content={ogpImageURI ?? "ダミー画像用意する"} />
     </Head>
