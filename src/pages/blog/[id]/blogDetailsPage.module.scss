@@ -97,6 +97,8 @@
 
     margin-top: 30px;
 
+    overflow-wrap: break-word;
+
 
     @include WideScreen() {
 
