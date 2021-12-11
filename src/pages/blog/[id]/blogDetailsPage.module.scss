@@ -230,6 +230,16 @@
     }
   }
 
+
+  .sideBar {
+    @include MediumAndSmallScreen {
+      &:last-child {
+
+        padding-bottom: 90px;
+      }
+    }
+  }
+
   // - 目次 =============================================================================================================
   .TableOfContents {
 
