@@ -14,22 +14,24 @@ import { pagesPath } from "../../../lib/$path";
 type Props = {
   category: Pick<Category, "id" | "name">;
   notOnClick?: boolean;
+  onClickFunction?: () => void;
 }
 
 /* eslint-disable-next-line react/display-name */
 export const CategoryBadge: VFC<Props> = memo((props) => {
 
-  const { category, notOnClick = false } = props;
+  const { category, notOnClick = false, onClickFunction } = props;
 
   return (
     <>
       {notOnClick ? (
         <span className={styles.categoryBadge} >{ category.name }</span>
       ) : (
-        <Link
-          href={pagesPath.blog.category._categoryId(category.id).page._pageId(1).$url()}
-        >
-          <a className={`${styles.categoryBadge} ${styles.categoryBadge__linkStyle}`} >{ category.name }</a>
+        <Link href={pagesPath.blog.category._categoryId(category.id).page._pageId(1).$url()}>
+          <a
+            className={`${styles.categoryBadge} ${styles.categoryBadge__linkStyle}`}
+            onClick={onClickFunction}
+          >{ category.name }</a>
         </Link>
       )}
     </>

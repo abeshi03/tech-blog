@@ -73,6 +73,7 @@ export const Header: VFC = memo(() => {
           <CategoriesBadgeFlow
             categories={categories}
             style={{ marginTop: "20px"}}
+            onClickFunction={onClickCloseModal}
           />
         </div>
       </Modal>
