@@ -95,31 +95,47 @@
   }
 
 
-  .categoryButton {
+  .right {
 
-    font-size: 14px;
-    color: white;
+    display: flex;
 
     cursor: pointer;
 
-
-    &:hover {
+    &:hover .categoryButton,
+    &:hover .icon {
 
       text-decoration: underline;
       opacity: 0.7;
     }
 
-    &:focus {
+    &:focus .categoryButton,
+    &:hover .icon {
 
       opacity: 0.7;
     }
 
 
-    &:active {
+    &:active .categoryButton,
+    &:hover .icon {
 
       text-decoration: none;
       opacity: 1;
     }
+  }
+
+
+  .icon {
+
+    @include EqualWidthAndHeight(15px);
+    fill: white;
+    margin-left: 10px;
+  }
+
+
+  .categoryButton {
+
+    font-size: 14px;
+    color: white;
   }
 
 

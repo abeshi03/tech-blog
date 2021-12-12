@@ -4,6 +4,7 @@ import Link from "next/link";
 
 // - アセット ============================================================================================================
 import styles from "./header.module.scss";
+import { SearchIcon } from "../../../assets/icons/SearchIcon";
 
 // - ルーティング =========================================================================================================
 import { pagesPath } from "../../../lib/$path";
@@ -54,19 +55,24 @@ export const Header: VFC = memo(() => {
 
   return (
     <header className={styles.header}>
+
       <div className={styles.headerInner}>
-        <div className={styles.right}>
+        <div className={styles.left}>
           <Link href={pagesPath.$url()}>
             <a className={styles.logo}>abeshi blog</a>
           </Link>
         </div>
-        <div className={styles.left}>
+
+        <div className={styles.right} onClick={onClickModalOpen}>
           <div
             className={styles.categoryButton}
             role="button"
-            onClick={onClickModalOpen}
           >カテゴリーで検索</div>
+          <div className={styles.icon}>
+            <SearchIcon/>
+          </div>
         </div>
+
       </div>
 
       <Modal isOpen={modalIsOpen} closeModalFunction={onClickCloseModal}>
