@@ -26,6 +26,7 @@ import { getBlogsContainCategory } from "../apis/BlogAPI";
 import { BlogCard } from "../components/organisms/Cards/BlogCard/BlogCard";
 import { ProfileCard } from "../components/organisms/Cards/ProfileCard/ProfileCard";
 import { HeadingAndLink } from "../components/molecules/HeadingAndLink/HeadingAndLink";
+import { Modal } from "../components/organisms/Modal/Modal";
 
 // - 定数 ===============================================================================================================
 import { NEXT_JS_CATEGORY_ID } from "../constants/BlogPageSettings";
@@ -117,6 +118,9 @@ const Home: VFC<Props> = (props) => {
           </div>
         </div>
       </main>
+      <Modal
+        isOpen={true}
+      >ほげほげほげ</Modal>
     </>
   );
 };
