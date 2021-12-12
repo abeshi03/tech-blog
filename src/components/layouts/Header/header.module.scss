@@ -16,24 +16,6 @@
    }
   }
 
-  @mixin MediumScreen() {
-   @media screen and (min-width: $MEDIUM_SCREENS__MINIMAL_WIDTH) and (max-width: $wideScreen - 1) {
-     @content
-   }
-  }
-
-  @mixin SmallScreen() {
-   @media screen and (max-width: $MEDIUM_SCREENS__MINIMAL_WIDTH - 1) {
-     @content
-   }
-  }
-
-  @mixin WideAndMediumScreen() {
-   @media screen and (min-width: $MEDIUM_SCREENS__MINIMAL_WIDTH) {
-     @content
-   }
-  }
-
   @mixin MediumAndSmallScreen() {
    @media screen and (max-width: $wideScreen - 1) {
      @content
