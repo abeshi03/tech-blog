@@ -26,6 +26,9 @@ export const pagesPath = {
       })
     }
   },
+  privacy: {
+    $url: (url?: { hash?: string }) => ({ pathname: '/privacy' as const, hash: url?.hash })
+  },
   $url: (url?: { hash?: string }) => ({ pathname: '/' as const, hash: url?.hash })
 }
 

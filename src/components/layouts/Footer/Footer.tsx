@@ -7,6 +7,7 @@ import styles from "./footer.module.scss";
 
 // - ルーティング =========================================================================================================
 import { Routing } from "../../../routing/routing";
+import { pagesPath } from "../../../lib/$path";
 
 
 /* eslint-disable-next-line react/display-name */
@@ -16,13 +17,13 @@ export const Footer: VFC = memo(() => {
       <ul className={styles.footerLinks}>
 
         <li className={styles.footerLink}>
-          <Link href={Routing.TermsOfService.path}>
+          <Link href={pagesPath.privacy.$url()}>
             <a className={styles.link}>利用規約</a>
           </Link>
         </li>
 
         <li className={styles.footerLink}>
-          <Link href={Routing.Profile.path}>
+          <Link href={pagesPath.privacy.$url()}>
             <a className={styles.link}>プライバシーポリシー</a>
           </Link>
         </li>
