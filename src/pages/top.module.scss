@@ -111,4 +111,16 @@
       }
     }
   }
+
+
+  .profileBlock {
+
+    @include SmallScreen {
+
+      &:last-child {
+
+        margin-bottom: 90px;
+      }
+    }
+  }
 }
