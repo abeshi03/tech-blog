@@ -109,7 +109,6 @@
       opacity: 0.7;
     }
 
-
     &:focus {
 
       opacity: 0.7;
@@ -121,5 +120,12 @@
       text-decoration: none;
       opacity: 1;
     }
+  }
+
+
+  .headingAndCloseButton {
+
+    @include EqualLeftAndRightPaddings(10px);
+    padding-bottom: 30px;
   }
 }

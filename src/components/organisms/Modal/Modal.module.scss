@@ -46,27 +46,40 @@
   .modalInner {
 
     border-radius: 10px;
+    @include EqualLeftAndRightPaddings(10px);
 
     position: relative;
 
     @include WideScreen {
 
       width: 60%;
-      height: 60%;
     }
 
 
     @include MediumScreen {
 
       width: 80%;
-      height: 80%;
     }
 
 
     @include SmallScreen {
 
       width: 90%;
-      height: 90%;
+    }
+  }
+
+
+  .closeButton {
+
+    font-size: 30px;
+    text-align: right;
+
+    cursor: pointer;
+
+
+    &:hover {
+
+      opacity: 0.6;
     }
   }
 }
