@@ -11,6 +11,7 @@ import { pagesPath } from "../../../lib/$path";
 // - 子コンポーネント =====================================================================================================
 import { Modal } from "../../organisms/Modal/Modal";
 import { CategoriesBadgeFlow } from "../../molecules/CategoriesBadgeFlow/CategoriesBadgeFlow";
+import { AlertBox } from "../../atoms/AlertBox/AlertBox";
 
 // - 型定義 =============================================================================================================
 import { Category } from "../../../types/Category";
@@ -23,16 +24,16 @@ import { getCategories } from "../../../apis/CategoryAPI";
 export const Header: VFC = memo(() => {
 
   const [ modalIsOpen, setModalIsOpen ] = useState(false);
-
   const [ categories, setCategories ] = useState<Category[]>([]);
+  const [ getCategoriesError, setGetCategoriesError ] = useState(false);
 
   const onClickModalOpen = () => {
     setModalIsOpen(true);
-  }
+  };
 
   const onClickCloseModal = (): void => {
     setModalIsOpen(false);
-  }
+  };
 
   const getBlogCategories = async (): Promise<void> => {
     try {
@@ -42,13 +43,14 @@ export const Header: VFC = memo(() => {
 
     } catch (error: unknown) {
 
-      console.log("エラーが発生しました")
+      setGetCategoriesError(true);
+      console.log("error: headerのgetCategoriesでエラー発生");
     }
-  }
+  };
 
   useEffect(() => {
     getBlogCategories();
-  }, [])
+  }, []);
 
   return (
     <header className={styles.header}>
@@ -70,11 +72,20 @@ export const Header: VFC = memo(() => {
       <Modal isOpen={modalIsOpen} closeModalFunction={onClickCloseModal}>
         <div className={styles.headingAndCloseButton}>
           <h3 className="heading3">カテゴリーで絞り込み</h3>
-          <CategoriesBadgeFlow
-            categories={categories}
-            style={{ marginTop: "20px"}}
-            onClickFunction={onClickCloseModal}
-          />
+          { getCategoriesError ? (
+            <AlertBox
+              title="カテゴリー取得中エラーが発生いたしました。"
+              description="大変申し訳ございません。カテゴリー取得中エラーが発生いたしました。"
+              alertType="ERROR"
+              style={{ marginTop: "20px" }}
+            />
+          ) : (
+            <CategoriesBadgeFlow
+              categories={categories}
+              style={{ marginTop: "20px"}}
+              onClickFunction={onClickCloseModal}
+            />
+          )}
         </div>
       </Modal>
 
