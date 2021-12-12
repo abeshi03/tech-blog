@@ -1,0 +1,85 @@
+@import "src/assets/styles/global/mixins/mixins";
+@import "src/assets/styles/global/valiables/valiables";
+
+.modal {
+
+  $MAX_CONTENT_WIDTH: 1240px;
+  $LEFT_OR_RIGHT_MINIMAL_EQUAL_PADDINGS__WIDE_SCREENS: 34px;
+
+  $wideScreen: $MAX_CONTENT_WIDTH+2*$LEFT_OR_RIGHT_MINIMAL_EQUAL_PADDINGS__WIDE_SCREENS;
+
+  $MEDIUM_SCREENS__MINIMAL_WIDTH: 580px;
+
+  @mixin WideScreen() {
+   @media screen and (min-width: $wideScreen) {
+     @content
+   }
+  }
+
+  @mixin MediumScreen() {
+   @media screen and (min-width: $MEDIUM_SCREENS__MINIMAL_WIDTH) and (max-width: $wideScreen - 1) {
+     @content
+   }
+  }
+
+  @mixin SmallScreen() {
+    @media screen and (max-width: $MEDIUM_SCREENS__MINIMAL_WIDTH - 1) {
+      @content
+    }
+  }
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(black, 0.5);
+
+
+  .modalInner {
+
+    border-radius: 10px;
+    @include EqualLeftAndRightPaddings(10px);
+
+    position: relative;
+
+    @include WideScreen {
+
+      width: 60%;
+    }
+
+
+    @include MediumScreen {
+
+      width: 80%;
+    }
+
+
+    @include SmallScreen {
+
+      width: 90%;
+    }
+  }
+
+
+  .closeButton {
+
+    font-size: 30px;
+    text-align: right;
+
+    cursor: pointer;
+
+
+    &:hover {
+
+      opacity: 0.6;
+    }
+  }
+}
