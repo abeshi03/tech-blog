@@ -1,5 +1,6 @@
 // - フレームワーク =======================================================================================================
-import React, {memo, VFC} from "react";
+import React, { memo, VFC } from "react";
+
 // - アセット ============================================================================================================
 import styles from "./header.module.scss";
 // - ルーティング =========================================================================================================
@@ -8,7 +9,17 @@ import styles from "./header.module.scss";
 export const Header: VFC = memo(() => {
   return (
     <header className={styles.header}>
-      <p>ヘッダー実装待機</p>
+      <div className={styles.headerInner}>
+        <div className={styles.right}>
+          <div className={styles.logo}>abeshi blog</div>
+        </div>
+        <div className={styles.left}>
+          <div
+            className={styles.categoryButton}
+            role="button"
+          >カテゴリーで検索</div>
+        </div>
+      </div>
     </header>
   );
 });
