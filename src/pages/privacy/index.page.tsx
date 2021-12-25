@@ -30,7 +30,6 @@ const breadcrumbLinks: BreadcrumbLink[] = [
 const Privacy: VFC = memo(() => {
 
 
-
   return (
     <>
       <MetaData

@@ -17,13 +17,13 @@ export const Footer: VFC = memo(() => {
       <ul className={styles.footerLinks}>
 
         <li className={styles.footerLink}>
-          <Link href={pagesPath.privacy.$url()}>
-            <a className={styles.link}>利用規約</a>
+          <Link href={pagesPath.disclaimer.$url().pathname}>
+            <a className={styles.link}>免責事項</a>
           </Link>
         </li>
 
         <li className={styles.footerLink}>
-          <Link href={pagesPath.privacy.$url()}>
+          <Link href={pagesPath.privacy.$url().pathname}>
             <a className={styles.link}>プライバシーポリシー</a>
           </Link>
         </li>

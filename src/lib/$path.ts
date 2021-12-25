@@ -26,6 +26,9 @@ export const pagesPath = {
       })
     }
   },
+  disclaimer: {
+    $url: (url?: { hash?: string }) => ({ pathname: '/disclaimer' as const, hash: url?.hash })
+  },
   privacy: {
     $url: (url?: { hash?: string }) => ({ pathname: '/privacy' as const, hash: url?.hash })
   },
