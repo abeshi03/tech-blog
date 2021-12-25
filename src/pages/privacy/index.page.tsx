@@ -27,7 +27,7 @@ const breadcrumbLinks: BreadcrumbLink[] = [
 
 
 /* eslint-disable-next-line react/display-name */
-const Privacy: VFC = memo((props) => {
+const Privacy: VFC = memo(() => {
 
 
 
