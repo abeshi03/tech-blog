@@ -27,14 +27,14 @@ import { ProfileCard } from "../components/organisms/Cards/ProfileCard/ProfileCa
 import { HeadingAndLink } from "../components/molecules/HeadingAndLink/HeadingAndLink";
 
 // - 定数 ===============================================================================================================
-import { NEXT_JS_CATEGORY_ID } from "../constants/BlogPageSettings";
-import { VUE_JE_CATEGORY_ID } from "../constants/BlogPageSettings";
+import { REACT_CATEGORY_ID } from "../constants/BlogPageSettings";
+import { BEGINNER_CATEGORY_ID } from "../constants/BlogPageSettings";
 
 type Props = {
   myProfile: Profile;
   blogs: BlogResponseData;
-  nextJsBlogs: BlogResponseData;
-  vueJsBlogs: BlogResponseData;
+  reactBlogs: BlogResponseData;
+  beginnerBlogs: BlogResponseData;
 }
 
 type PostGroup = {
@@ -47,7 +47,7 @@ type PostGroup = {
 
 const Home: VFC<Props> = (props) => {
 
-  const { myProfile, blogs, nextJsBlogs, vueJsBlogs } = props;
+  const { myProfile, blogs, reactBlogs, beginnerBlogs } = props;
 
   const blogGroups: PostGroup[] = [
     {
@@ -59,17 +59,17 @@ const Home: VFC<Props> = (props) => {
     },
     {
       id: 2,
-      heading: "Next.js",
-      linkName: "Next.jsの記事一覧",
-      path: pagesPath.blog.category._categoryId(NEXT_JS_CATEGORY_ID).page._pageId(1).$url(),
-      posts: nextJsBlogs
+      heading: "React",
+      linkName: "Reactの記事一覧",
+      path: pagesPath.blog.category._categoryId(REACT_CATEGORY_ID).page._pageId(1).$url(),
+      posts: reactBlogs
     },
     {
       id: 3,
-      heading: "Vue.js",
-      linkName: "Vue.jsの記事一覧",
-      path: pagesPath.blog.category._categoryId(VUE_JE_CATEGORY_ID).page._pageId(1).$url(),
-      posts: vueJsBlogs
+      heading: "初学者向け",
+      linkName: "初学者向けの記事一覧",
+      path: pagesPath.blog.category._categoryId(BEGINNER_CATEGORY_ID).page._pageId(1).$url(),
+      posts: beginnerBlogs
     }
   ];
 
@@ -124,20 +124,20 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
 
-  const [ myProfile, blogs, nextJsBlogs, vueJsBlogs ]: [ Profile, BlogResponseData, BlogResponseData, BlogResponseData ] =
+  const [ myProfile, blogs, reactBlogs, beginnerBlogs ]: [ Profile, BlogResponseData, BlogResponseData, BlogResponseData ] =
     await Promise.all([
       getMyProfile(),
       getBlogs({ limit: 3, offset: 0 }),
-      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: NEXT_JS_CATEGORY_ID }),
-      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: VUE_JE_CATEGORY_ID })
+      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: REACT_CATEGORY_ID }),
+      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: BEGINNER_CATEGORY_ID })
     ]);
 
   return {
     props: {
       myProfile,
       blogs,
-      nextJsBlogs,
-      vueJsBlogs
+      reactBlogs,
+      beginnerBlogs
     }
   };
 };
