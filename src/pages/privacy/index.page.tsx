@@ -40,19 +40,19 @@ const Privacy: VFC = memo((props) => {
         twitterCardType="summary_large_image"
         description="プライバシーポリシーのページです。"
       />
+      <Breadcrumb links={breadcrumbLinks}/>
       <main className={styles.privacyPage}>
-        <Breadcrumb links={breadcrumbLinks}/>
 
-        <h1 className="heading1__underline">プライバシーポリシー</h1>
+        <h1 className="heading1">プライバシーポリシー</h1>
 
 
 
         <p>
-          abeshi blog(以下「当サイト」と言います。)では、お客様からお預かりする個人情報の重要性を強く認識し、個人情報保護に関する法律、
+          abeshi blog(以下「当サイト」と言います。)では、お客様からお預かりする個情報の重要性を強く認識し、個人情報保護に関する法律、
           その他の関係法令を遵守すると共に、以下に定めるプライバシーポリシーにしたがって、個人情報を安全かつ適切に取り扱うことを宣言いたします。
         </p>
 
-        <h3 className="heading3__underline">個人情報</h3>
+        <h2 className="heading2 heading2__underline">個人情報</h2>
 
         <p>
           「個人情報」とは，個人情報保護法にいう「個人情報」を指すものとし，生存する個人に関する情報であって，
@@ -60,7 +60,7 @@ const Privacy: VFC = memo((props) => {
           及び健康保険証の保険者番号などの当該情報単体から特定の個人を識別できる情報（個人識別情報）を指します。
         </p>
 
-        <h3 className="heading3__underline">個人情報の利用目的</h3>
+        <h2 className="heading2 heading2__underline">個人情報の利用目的</h2>
 
         <p>
           当サイトでは、お客様からのお問い合わせやサービスへのお申し込み等を通じて、
@@ -75,7 +75,7 @@ const Privacy: VFC = memo((props) => {
           ご本人様の同意を得ずに第三者に提供することはありません。
         </p>
 
-        <h3 className="heading3__underline">Cookie(クッキー)及びその他の技術、解析ツールについて</h3>
+        <h2 className="heading2 heading2__underline">Cookie(クッキー)及びその他の技術、解析ツールについて</h2>
 
         <p>
           本ウェブサイトは、Cookie及びこれに類する 技術 を利用することがあります。
@@ -88,7 +88,7 @@ const Privacy: VFC = memo((props) => {
           詳しくはGoogleアナリティクス利用規約をご確認ください。
         </p>
 
-        <h3 className="heading3__underline">プライバシーポリシーの変更</h3>
+        <h2 className="heading2 heading2__underline">プライバシーポリシーの変更</h2>
 
         <p>本ポリシーの内容は，法令その他本ポリシーに別段の定めのある事項 を除いて，ユーザーに通知することなく，変更することができるものとします。</p>
         <p>当社が別途定める場合を除いて，変更後のプライバシーポリシーは，本ウェブサイトに掲載したときから効力を生じるものとします。</p>
