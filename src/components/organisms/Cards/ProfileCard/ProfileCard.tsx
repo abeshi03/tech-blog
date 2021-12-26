@@ -28,7 +28,7 @@ export const ProfileCard: VFC<Props> = memo((props) => {
 
   const displayAlert = (): void => {
     alert("こちらのページは現在準備中です");
-  }
+  };
 
   return (
     <div className={styles.profileCard} style={style && style}>

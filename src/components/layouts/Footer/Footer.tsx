@@ -6,7 +6,6 @@ import Link from "next/link";
 import styles from "./footer.module.scss";
 
 // - ルーティング =========================================================================================================
-import { Routing } from "../../../routing/routing";
 import { pagesPath } from "../../../lib/$path";
 
 
@@ -15,7 +14,7 @@ export const Footer: VFC = memo(() => {
 
   const displayAlert = (): void => {
     alert("こちらのページは現在準備中です");
-  }
+  };
 
   return (
     <footer className={styles.footer}>
