@@ -23,9 +23,8 @@ export const CategoriesBadgeFlow: VFC<Props> = memo((props) => {
     <div className={styles.categoriesBadgeFlow} style={style}>
       {categories.map((category: Category) => (
         // - サファリでgapが効かない為仕方なく親クラスを仕様
-        <div className={styles.container}>
+        <div key={category.id} className={styles.container}>
           <CategoryBadge
-            key={category.id}
             category={category}
             onClickFunction={onClickFunction}
           />
