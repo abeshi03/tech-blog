@@ -72,9 +72,14 @@
 
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    //gap: 10px; safariが対応したら、componentのstyleを消して、gapを使う
 
     margin-top: 10px;
+  }
+
+
+  .container {
+    margin-right: 10px;
   }
 
 

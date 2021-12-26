@@ -6,6 +6,8 @@
   @include EqualLeftAndRightPaddings(10px);
   @include EqualTopAndBottomPaddings(6px);
 
+  display: inline-block;
+
   background: $MAIN_COLOR_SKY_BLUE;
   color: white;
 

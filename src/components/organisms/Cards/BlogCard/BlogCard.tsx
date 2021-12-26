@@ -6,7 +6,6 @@ import Link from "next/link";
 import styles from "./blogCard.module.scss";
 
 // - ルーディング ========================================================================================================
-import { Routing } from "../../../../routing/routing";
 import { pagesPath } from "../../../../lib/$path";
 
 // - 型定義 =============================================================================================================
@@ -43,7 +42,12 @@ return (
 
       <div className={styles.categoriesFlow}>
         {targetBlog.categories.map((category: Category) => (
-          <CategoryBadge notOnClick key={category.id} category={category}/>
+          <CategoryBadge
+            key={category.id}
+            notOnClick
+            category={category}
+            style={{ marginRight: "5px", marginTop: "5px"}}
+          />
         ))}
       </div>
 

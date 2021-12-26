@@ -5,7 +5,7 @@
 
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  //gap: 10px; safariが対応したらgapを使ってcomponentのstyleを削除する
 
   @include EqualLeftAndRightPaddings(15px);
   @include EqualTopAndBottomPaddings(20px);
@@ -13,4 +13,12 @@
   background: #FFFFFF;
   box-shadow: 0 -3px 10px rgba(#123D52, 0.2);
   border-radius: 20px;
+}
+
+
+// - サファリでgapが効かない為仕方なく親クラスを仕様
+.container {
+
+  margin-right: 5px;
+  margin-top: 5px;
 }

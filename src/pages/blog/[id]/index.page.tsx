@@ -98,7 +98,13 @@ return metaDescription.slice(0, 100);
 
             <div className={styles.categoriesFlow}>
               {blog.categories.map((category: Category) => (
-                <CategoryBadge category={category} key={category.id}/>
+                // - サファリでgapが効かない為仕方なく親クラスを仕様
+                <div className={styles.container}>
+                  <CategoryBadge
+                    category={category}
+                    key={category.id}
+                  />
+                </div>
               ))}
             </div>
 

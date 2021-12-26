@@ -5,7 +5,7 @@
 
   display: flex;
   align-items: center;
-  column-gap: 6px;
+  //column-gap: 6px;
 
   text-decoration: none;
 
@@ -13,6 +13,8 @@
 
 
   .icon {
+
+    margin-right: 6px; // - safariが対応したら上のgapを使う
 
     @include EqualWidthAndHeight(21px);
 
