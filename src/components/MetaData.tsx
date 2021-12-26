@@ -2,8 +2,11 @@
 import React, {memo, VFC} from "react";
 import Head from "next/head";
 
-// - 型定義 =======================================================================================================
+// - 型定義 =============================================================================================================
 import { UrlObject, format } from "url";
+
+// - 画像 ===============================================================================================================
+import defaultImages from "../assets/images/abeshi-blog.png";
 
 type OgType = "website" | "article"
 
@@ -41,16 +44,14 @@ export const MetaData: VFC<Props> = memo((props) => {
       <meta property="og:title" content={metaTitle} />
       <meta property="og:type" content={type} />
       <meta property="og:description" content={isDisplayMetaDescription} />
-      {/*TODO 画像用意する*/}
-      <meta property="og:image" content={ogpImageURI ?? "ダミー画像用意する"} />
+      <meta property="og:image" content={ogpImageURI ?? defaultImages.src} />
       <meta property="og:site_name" content="abeshi blog" />
 
       {/* ツイッター ================================================================================================== */}
       <meta name="twitter:card" content={twitterCardType} />
       <meta name="twitter:title" content={metaTitle} />
       <meta name="twitter:description" content={isDisplayMetaDescription} />
-      {/*TODO 画像用意する*/}
-      <meta name="twitter:image" content={ogpImageURI ?? "ダミー画像用意する"} />
+      <meta name="twitter:image" content={ogpImageURI ?? defaultImages.src} />
     </Head>
   );
 });
