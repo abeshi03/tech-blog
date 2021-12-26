@@ -26,6 +26,10 @@ export const ProfileCard: VFC<Props> = memo((props) => {
 
   const { style, targetProfile } = props;
 
+  const displayAlert = (): void => {
+    alert("こちらのページは現在準備中です");
+  }
+
   return (
     <div className={styles.profileCard} style={style && style}>
 
@@ -48,6 +52,7 @@ export const ProfileCard: VFC<Props> = memo((props) => {
         size="BIG"
         path={"#"}
         style={{marginTop: "16px"}}
+        onClick={displayAlert}
       >Read more</Button>
 
     </div>

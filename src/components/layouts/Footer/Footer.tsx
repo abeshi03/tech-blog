@@ -12,6 +12,11 @@ import { pagesPath } from "../../../lib/$path";
 
 /* eslint-disable-next-line react/display-name */
 export const Footer: VFC = memo(() => {
+
+  const displayAlert = (): void => {
+    alert("こちらのページは現在準備中です");
+  }
+
   return (
     <footer className={styles.footer}>
       <ul className={styles.footerLinks}>
@@ -28,8 +33,8 @@ export const Footer: VFC = memo(() => {
           </Link>
         </li>
 
-        <li className={styles.footerLink}>
-          <Link href={Routing.Profile.path}>
+        <li className={styles.footerLink} onClick={displayAlert}>
+          <Link href={""}>
             <a className={styles.link}>プロフィール</a>
           </Link>
         </li>

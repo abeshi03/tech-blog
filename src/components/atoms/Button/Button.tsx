@@ -14,11 +14,12 @@ type Props = {
   path: string | UrlObject;
   children: ReactNode;
   style?: React.CSSProperties;
+  onClick?: () => void;
 }
 
 /* eslint-disable-next-line react/display-name */
 export const Button: VFC<Props> = memo((props) => {
-  const { color, path, children, size, style } = props;
+  const { color, path, children, size, style, onClick } = props;
 
   const ButtonColorModifierCSS_Class = (): string => {
     switch (color) {
@@ -39,7 +40,7 @@ export const Button: VFC<Props> = memo((props) => {
     <>
       <Link href={path}>
         <a className={styles.path} style={style}>
-          <button className={`${ButtonColorModifierCSS_Class()} ${ButtonSizeModifierCSS_Class()} ${styles.button}`}>
+          <button onClick={onClick} className={`${ButtonColorModifierCSS_Class()} ${ButtonSizeModifierCSS_Class()} ${styles.button}`}>
             { children }
           </button>
         </a>
