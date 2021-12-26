@@ -70,7 +70,7 @@ const BlogDetailsPage: VFC<Props> = (props) => {
 
   const metaDescription__100Characters = (): string => {
     const metaDescription: string = blog.blogContent.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,"");
-    
+
 return metaDescription.slice(0, 100);
   };
 
@@ -101,6 +101,8 @@ return metaDescription.slice(0, 100);
                 <CategoryBadge category={category} key={category.id}/>
               ))}
             </div>
+
+            <div className={styles.blogImage} style={{backgroundImage: `url(${blog.mainImage.url})`}} role="img"></div>
 
             <div className={styles.blogContent}
                  dangerouslySetInnerHTML={{
