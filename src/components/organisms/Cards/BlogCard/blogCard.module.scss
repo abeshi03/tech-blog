@@ -40,6 +40,8 @@
 
     background-size: cover;
     background-position: center;
+    @include EqualLeftAndRightMargin(-7px);
+    margin-top: -7px;
   }
 
 
