@@ -1,6 +1,6 @@
 // - ライブラリー ========================================================================================================
 import React from "react";
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 // - コンポーネント =======================================================================================================
 import { AlertBox } from "./AlertBox";
