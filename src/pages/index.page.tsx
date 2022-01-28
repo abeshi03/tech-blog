@@ -132,14 +132,16 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
 
+  const getBlogsCount: number = 6;
+
   const [ myProfile, blogs, reactBlogs, beginnerBlogs, typeScriptBlogs ]:
     [ Profile, BlogResponseData, BlogResponseData, BlogResponseData, BlogResponseData ] =
       await Promise.all([
         getMyProfile(),
-        getBlogs({ limit: 3, offset: 0 }),
-        getBlogsContainCategory({ limit: 3, offset: 0, categoryID: CATEGORY_ID.REACT }),
-        getBlogsContainCategory({ limit: 3, offset: 0, categoryID: CATEGORY_ID.BEGINNER }),
-        getBlogsContainCategory({ limit: 3, offset: 0, categoryID: CATEGORY_ID.TYPE_SCRIPT })
+        getBlogs({ limit: getBlogsCount, offset: 0 }),
+        getBlogsContainCategory({ limit: getBlogsCount, offset: 0, categoryID: CATEGORY_ID.REACT }),
+        getBlogsContainCategory({ limit: getBlogsCount, offset: 0, categoryID: CATEGORY_ID.BEGINNER }),
+        getBlogsContainCategory({ limit: getBlogsCount, offset: 0, categoryID: CATEGORY_ID.TYPE_SCRIPT })
       ]);
 
   return {
