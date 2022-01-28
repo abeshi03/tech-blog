@@ -132,7 +132,7 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
 
-  const getBlogsCount: number = 6;
+  const getBlogsCount: number = 3;
 
   const [ myProfile, blogs, reactBlogs, beginnerBlogs, typeScriptBlogs ]:
     [ Profile, BlogResponseData, BlogResponseData, BlogResponseData, BlogResponseData ] =
