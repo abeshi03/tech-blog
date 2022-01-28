@@ -27,8 +27,8 @@ import { ProfileCard } from "../components/organisms/Cards/ProfileCard/ProfileCa
 import { HeadingAndLink } from "../components/molecules/HeadingAndLink/HeadingAndLink";
 
 // - 定数 ===============================================================================================================
-import { REACT_CATEGORY_ID } from "../constants/BlogPageSettings";
-import { BEGINNER_CATEGORY_ID } from "../constants/BlogPageSettings";
+import { CATEGORY_ID } from "../constants/BlogPageSettings";
+
 
 type Props = {
   myProfile: Profile;
@@ -61,14 +61,14 @@ const Home: VFC<Props> = (props) => {
       id: 2,
       heading: "React",
       linkName: "Reactの記事一覧",
-      path: pagesPath.blog.category._categoryId(REACT_CATEGORY_ID).page._pageId(1).$url(),
+      path: pagesPath.blog.category._categoryId(CATEGORY_ID.REACT).page._pageId(1).$url(),
       posts: reactBlogs
     },
     {
       id: 3,
       heading: "初学者向け",
       linkName: "初学者向けの記事一覧",
-      path: pagesPath.blog.category._categoryId(BEGINNER_CATEGORY_ID).page._pageId(1).$url(),
+      path: pagesPath.blog.category._categoryId(CATEGORY_ID.BEGINNER).page._pageId(1).$url(),
       posts: beginnerBlogs
     }
   ];
@@ -128,8 +128,8 @@ export const getStaticProps: GetStaticProps = async () => {
     await Promise.all([
       getMyProfile(),
       getBlogs({ limit: 3, offset: 0 }),
-      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: REACT_CATEGORY_ID }),
-      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: BEGINNER_CATEGORY_ID })
+      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: CATEGORY_ID.REACT }),
+      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: CATEGORY_ID.BEGINNER })
     ]);
 
   return {
