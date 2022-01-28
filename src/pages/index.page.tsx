@@ -35,6 +35,7 @@ type Props = {
   blogs: BlogResponseData;
   reactBlogs: BlogResponseData;
   beginnerBlogs: BlogResponseData;
+  typeScriptBlogs: BlogResponseData;
 }
 
 type PostGroup = {
@@ -47,7 +48,7 @@ type PostGroup = {
 
 const Home: VFC<Props> = (props) => {
 
-  const { myProfile, blogs, reactBlogs, beginnerBlogs } = props;
+  const { myProfile, blogs, reactBlogs, beginnerBlogs, typeScriptBlogs } = props;
 
   const blogGroups: PostGroup[] = [
     {
@@ -66,6 +67,13 @@ const Home: VFC<Props> = (props) => {
     },
     {
       id: 3,
+      heading: "TypeScript",
+      linkName: "TypeScriptの記事一覧",
+      path: pagesPath.blog.category._categoryId(CATEGORY_ID.TYPE_SCRIPT).page._pageId(1).$url(),
+      posts: typeScriptBlogs
+    },
+    {
+      id: 4,
       heading: "初学者向け",
       linkName: "初学者向けの記事一覧",
       path: pagesPath.blog.category._categoryId(CATEGORY_ID.BEGINNER).page._pageId(1).$url(),
@@ -124,20 +132,23 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
 
-  const [ myProfile, blogs, reactBlogs, beginnerBlogs ]: [ Profile, BlogResponseData, BlogResponseData, BlogResponseData ] =
-    await Promise.all([
-      getMyProfile(),
-      getBlogs({ limit: 3, offset: 0 }),
-      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: CATEGORY_ID.REACT }),
-      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: CATEGORY_ID.BEGINNER })
-    ]);
+  const [ myProfile, blogs, reactBlogs, beginnerBlogs, typeScriptBlogs ]:
+    [ Profile, BlogResponseData, BlogResponseData, BlogResponseData, BlogResponseData ] =
+      await Promise.all([
+        getMyProfile(),
+        getBlogs({ limit: 3, offset: 0 }),
+        getBlogsContainCategory({ limit: 3, offset: 0, categoryID: CATEGORY_ID.REACT }),
+        getBlogsContainCategory({ limit: 3, offset: 0, categoryID: CATEGORY_ID.BEGINNER }),
+        getBlogsContainCategory({ limit: 3, offset: 0, categoryID: CATEGORY_ID.TYPE_SCRIPT })
+      ]);
 
   return {
     props: {
       myProfile,
       blogs,
       reactBlogs,
-      beginnerBlogs
+      beginnerBlogs,
+      typeScriptBlogs
     }
   };
 };
