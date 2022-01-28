@@ -27,14 +27,15 @@ import { ProfileCard } from "../components/organisms/Cards/ProfileCard/ProfileCa
 import { HeadingAndLink } from "../components/molecules/HeadingAndLink/HeadingAndLink";
 
 // - 定数 ===============================================================================================================
-import { REACT_CATEGORY_ID } from "../constants/BlogPageSettings";
-import { BEGINNER_CATEGORY_ID } from "../constants/BlogPageSettings";
+import { CATEGORY_ID } from "../constants/BlogPageSettings";
+
 
 type Props = {
   myProfile: Profile;
   blogs: BlogResponseData;
   reactBlogs: BlogResponseData;
   beginnerBlogs: BlogResponseData;
+  typeScriptBlogs: BlogResponseData;
 }
 
 type PostGroup = {
@@ -47,7 +48,7 @@ type PostGroup = {
 
 const Home: VFC<Props> = (props) => {
 
-  const { myProfile, blogs, reactBlogs, beginnerBlogs } = props;
+  const { myProfile, blogs, reactBlogs, beginnerBlogs, typeScriptBlogs } = props;
 
   const blogGroups: PostGroup[] = [
     {
@@ -61,14 +62,21 @@ const Home: VFC<Props> = (props) => {
       id: 2,
       heading: "React",
       linkName: "Reactの記事一覧",
-      path: pagesPath.blog.category._categoryId(REACT_CATEGORY_ID).page._pageId(1).$url(),
+      path: pagesPath.blog.category._categoryId(CATEGORY_ID.REACT).page._pageId(1).$url(),
       posts: reactBlogs
     },
     {
       id: 3,
+      heading: "TypeScript",
+      linkName: "TypeScriptの記事一覧",
+      path: pagesPath.blog.category._categoryId(CATEGORY_ID.TYPE_SCRIPT).page._pageId(1).$url(),
+      posts: typeScriptBlogs
+    },
+    {
+      id: 4,
       heading: "初学者向け",
       linkName: "初学者向けの記事一覧",
-      path: pagesPath.blog.category._categoryId(BEGINNER_CATEGORY_ID).page._pageId(1).$url(),
+      path: pagesPath.blog.category._categoryId(CATEGORY_ID.BEGINNER).page._pageId(1).$url(),
       posts: beginnerBlogs
     }
   ];
@@ -124,20 +132,25 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
 
-  const [ myProfile, blogs, reactBlogs, beginnerBlogs ]: [ Profile, BlogResponseData, BlogResponseData, BlogResponseData ] =
-    await Promise.all([
-      getMyProfile(),
-      getBlogs({ limit: 3, offset: 0 }),
-      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: REACT_CATEGORY_ID }),
-      getBlogsContainCategory({ limit: 3, offset: 0, categoryID: BEGINNER_CATEGORY_ID })
-    ]);
+  const getBlogsCount: number = 3;
+
+  const [ myProfile, blogs, reactBlogs, beginnerBlogs, typeScriptBlogs ]:
+    [ Profile, BlogResponseData, BlogResponseData, BlogResponseData, BlogResponseData ] =
+      await Promise.all([
+        getMyProfile(),
+        getBlogs({ limit: getBlogsCount, offset: 0 }),
+        getBlogsContainCategory({ limit: getBlogsCount, offset: 0, categoryID: CATEGORY_ID.REACT }),
+        getBlogsContainCategory({ limit: getBlogsCount, offset: 0, categoryID: CATEGORY_ID.BEGINNER }),
+        getBlogsContainCategory({ limit: getBlogsCount, offset: 0, categoryID: CATEGORY_ID.TYPE_SCRIPT })
+      ]);
 
   return {
     props: {
       myProfile,
       blogs,
       reactBlogs,
-      beginnerBlogs
+      beginnerBlogs,
+      typeScriptBlogs
     }
   };
 };
