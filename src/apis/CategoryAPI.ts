@@ -13,6 +13,9 @@ export async function getCategories() {
   try {
 
     const response = await axios.get<CategoryResponseData>(CATEGORY_END_POINT, {
+      params: {
+        limit: 100
+      },
       headers: { "X-API-KEY": X_API_KEY }
     });
 
